@@ -298,7 +298,9 @@ ul {
   font-size: 9px;
   color: #2196F3;
 }
-
+.song-dropdown label {
+  display: block;
+}
 
 .pagination {
   display: flex;

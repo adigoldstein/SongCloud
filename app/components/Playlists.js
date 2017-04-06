@@ -1,7 +1,9 @@
 import React from 'react';
+import Song from './Song';
+
 
 export default function Playlists(props) {
-  console.info(props.data);
+  // console.info(props.data);
 
   return (
     <div className="playlists-container">
@@ -11,7 +13,7 @@ export default function Playlists(props) {
         </div>
 
         <ul className="playlists-list">
-          {props.data.map((playlist) => {
+          {props.playlists.map((playlist) => {
             console.info(playlist);
             return <li key={playlist.id} className="my-playlist">{playlist.title}</li>
 
@@ -20,15 +22,26 @@ export default function Playlists(props) {
         </ul>
       </div>
       <div className="playlists-right">
-        {props.data.map((playlist) => {
+        {props.playlists.map((playlist) => {
+          {/*console.info(playlist);*/}
           return (
-            <div className="each-playlist-container">
+            <div key={playlist.id} className="each-playlist-container">
               <div className="playlists-bar">
                 <h2>{playlist.title}</h2>
                 <button>delete</button>
               </div>
               <div className="songs-display">
+
                 *****************song comp will run here
+                {playlist.songs.map((song) => {
+                    {/*console.info(song);*/}
+
+                    return <Song key={song.id}
+                                 song={song}
+                                 {...props}
+                    />
+                  }
+                )}
               </div>
             </div>
           )

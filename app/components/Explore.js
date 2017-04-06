@@ -15,7 +15,6 @@ export default class Explore extends React.Component {
     }
   }
 
-
   GetXhr() {
 
     const genre = this.props.match.params.genre;
@@ -74,16 +73,18 @@ export default class Explore extends React.Component {
       <ul className="songs-ul">
         {this.state.songs.map((song) => {
             return <Song key={song.id}
-                         data={song}
-                         {... this.props}
+                         song={song}
+                         mode={'explore'}
+                         {...this.props}
             />
           }
-          )}
+        )}
       </ul>
     )
   }
 
   render() {
+    console.info(this.props);
 
     switch (this.state.songsLoading) {
       case 'loading':
