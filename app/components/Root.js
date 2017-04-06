@@ -4,6 +4,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import uuid from 'uuid';
 
 import  Topbar from  './Topbar';
 import  Explore from  './Explore';
@@ -16,6 +17,7 @@ export default class Root extends React.Component {
 
     super();
     this.updateCurrentSong = this.updateCurrentSong.bind(this);
+
     this.state = {
       currentSong: {},
       playlists: [
@@ -54,6 +56,7 @@ export default class Root extends React.Component {
 
 
   updateCurrentSong(song) {
+
 
     const songRecived = Object.assign({}, song);
 

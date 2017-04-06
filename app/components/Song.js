@@ -11,7 +11,7 @@ export default class song extends React.Component {
 
   dropDownElem () {
     return this.state.dropdownIsShown &&   <div className="song-dropdown">
-      <h3>Edit Playlist</h3>
+
       {this.playlistElemChooser()}
 
       {this.props.playlists.map((playlist) => {
@@ -35,10 +35,16 @@ export default class song extends React.Component {
   playlistElemChooser() {
 
     if (this.props.mode === 'playlists') {
-      return <h4>Edit Playlists</h4>
+      return(<div>
+        <h3>Edit Playlist</h3>
+        {/*<h4>Edit Playlists</h4>*/}
+      </div>)
     } else {
       if (this.props.mode === 'explore') {
-        return <h4>Create playlist +</h4>
+        return(<div>
+          <h3>Add To Playlist</h3>
+          <h4>Create playlist +</h4>
+        </div>)
       }
     }
   }

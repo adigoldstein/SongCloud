@@ -15,7 +15,7 @@ export default class Playlist extends React.Component {
       <div key={this.props.playlist.id} className="each-playlist-container">
         <div className="playlists-bar">
           <h2>{this.props.playlist.title}</h2>
-          <button>delete</button>
+          <button className="delete-btn">delete</button>
         </div>
         <div className="songs-display">
           <ul className="songs-ul">

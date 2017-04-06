@@ -13,6 +13,7 @@ body, html {
 ul {
   list-style: none;
 }
+
 #root, .main-root {
   width: 100%;
   height: 100%;
@@ -222,7 +223,6 @@ ul {
   margin-left: 20px;
 }
 
-
 .explore-loading-container {
   display: flex;
   //align-items: center;
@@ -242,7 +242,6 @@ ul {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-
 
 //******************song
 .songs-li {
@@ -291,7 +290,6 @@ ul {
   background-color: #FFFFFF;
 }
 
-
 .song-dropdown h3 {
   font-size: 11px;
   color: #4A4A4A;
@@ -301,9 +299,13 @@ ul {
   font-size: 9px;
   color: #2196F3;
 }
+
 .song-dropdown label {
   display: block;
 }
+
+
+
 
 .pagination {
   display: flex;
@@ -318,6 +320,46 @@ ul {
   background-color: #2196F3;
 }
 
+/* Ripple magic */
+.pagination button {
+  position: relative;
+  overflow: hidden;
+}
+
+.pagination button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.pagination button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+//****************************
 .pagination-div {
   width: 200px;
   display: flex;
@@ -390,7 +432,20 @@ ul {
   margin: 10px auto;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
+
+.playlists-bar h2 {
+  font-size: 22px;
+  margin-left: 20px;
+}
+
+.playlists-bar .delete-btn {
+  background-color: #fff;
+  border: none;
+  margin-right: 20px;
+}
+
 //Player******************************
 
 .player {
