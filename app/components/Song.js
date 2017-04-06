@@ -1,62 +1,81 @@
 import React from 'react';
 
-export default function song(props) {
-  console.info(props);
-  const minutes = Math.floor(parseInt(props.song.duration) / 60000);
-  const seconds = ((parseInt(props.song.duration % 60000) / 1000).toFixed(0));
-  const songDuration = (seconds === 60 ? (minutes + 1) + ":00" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
-
-  let artWork = props.song.artwork_url;
-  if (artWork === null) {
-    artWork = '';
+export default class song extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dropdownIsShown : false
+    }
 
   }
 
-  function playlistElemChooser() {
+  dropDownElem () {
+    return this.state.dropdownIsShown &&   <div className="song-dropdown">
+      <h3>Edit Playlist</h3>
+      {this.playlistElemChooser()}
+
+      {this.props.playlists.map((playlist) => {
+        {/*console.info(playlist);*/}
+        return <label key={playlist.id}>
+          <input type="checkbox"/>
+          {playlist.title}
+        </label>
+      })
+      }
 
 
-    if (props.mode === 'explore') {
-      return  <h4>Edit Playlists</h4>
+    </div>
+  }
+
+  toggleDisplay () {
+    this.setState( {dropdownIsShown : !this.state.dropdownIsShown})
+  }
+
+
+  playlistElemChooser() {
+
+    if (this.props.mode === 'playlists') {
+      return <h4>Edit Playlists</h4>
     } else {
-      if (props.mode === 'playlists') {
+      if (this.props.mode === 'explore') {
         return <h4>Create playlist +</h4>
       }
     }
   }
 
 
+  render() {
 
-  return <li className="songs-li" key={props.song.id} title={props.song.title}>
-    <div>
-      <img onClick={() => props.updateCurrentSong(props.song)} src={artWork.replace('large', 't300x300')}
-           alt="Song photo" className="song-img"/>
-      {/*<div style={{ backgroundImage: `url (" value.artwork_url.replace('large', 't300x300') ")` }}></div>*/}
-      <div className="song-title">{props.song.title}</div>
-      <div className="song-duration">
-        <i className="duration-icon fa fa-clock-o" aria-hidden="true"> </i>
-        {songDuration}
-        <div className="heart-container">
-          <i className="heart-icon fa fa-heart-o" aria-hidden="true"> </i>
-          <div className="song-dropdown">
+    // console.info(this.props);
+    const minutes = Math.floor(parseInt(this.props.song.duration) / 60000);
+    const seconds = ((parseInt(this.props.song.duration % 60000) / 1000).toFixed(0));
+    const songDuration = (seconds === 60 ? (minutes + 1) + ":00" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
 
-            <h3>Edit Playlist</h3>
-            {playlistElemChooser()}
+    let artWork = this.props.song.artwork_url;
+    if (artWork === null) {
+      artWork = '';
+    }
+    return (
 
-            {props.playlists.map((playlist) => {
-              {/*console.info(playlist);*/}
-              return <label key={playlist.id}>
-                <input  type="checkbox"/>
-                {playlist.title}
-              </label>
-            })
+      <li className="songs-li" key={this.props.song.id} title={this.props.song.title}>
+        <div>
+          <img onClick={() => this.props.updateCurrentSong(this.props.song)} src={artWork.replace('large', 't300x300')}
+               alt="Song photo" className="song-img"/>
+          {/*<div style={{ backgroundImage: `url (" value.artwork_url.replace('large', 't300x300') ")` }}></div>*/}
+          <div className="song-title">{this.props.song.title}</div>
+          <div className="song-duration">
+            <i className="duration-icon fa fa-clock-o" aria-hidden="true"> </i>
+            {songDuration}
+            <div className="heart-container">
+              <i onClick={()=>  this.toggleDisplay() } className="heart-icon fa fa-heart-o" aria-hidden="true"> </i>
+              {this.dropDownElem()}
 
-            }
-
-
+            </div>
           </div>
-        </div>
-      </div>
 
-    </div>
-  </li>
+        </div>
+      </li>
+    )
+  }
+
 }

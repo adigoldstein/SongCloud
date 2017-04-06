@@ -84,7 +84,7 @@ export default class Explore extends React.Component {
   }
 
   render() {
-    console.info(this.props);
+    // console.info(this.props);
 
     switch (this.state.songsLoading) {
       case 'loading':

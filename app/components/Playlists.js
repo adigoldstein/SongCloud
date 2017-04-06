@@ -14,7 +14,7 @@ export default function Playlists(props) {
 
         <ul className="playlists-list">
           {props.playlists.map((playlist) => {
-            console.info(playlist);
+            {/*console.info(playlist);*/}
             return <li key={playlist.id} className="my-playlist">{playlist.title}</li>
 
           })}
@@ -23,7 +23,8 @@ export default function Playlists(props) {
       </div>
       <div className="playlists-right">
         {props.playlists.map((playlist) => {
-          {/*console.info(playlist);*/}
+          {/*console.info(playlist);*/
+          }
           return (
             <div key={playlist.id} className="each-playlist-container">
               <div className="playlists-bar">
@@ -31,25 +32,24 @@ export default function Playlists(props) {
                 <button>delete</button>
               </div>
               <div className="songs-display">
+                <ul className="songs-ul">
+                  {playlist.songs.map((song) => {
+                      {/*console.info(song);*/
+                      }
 
-                *****************song comp will run here
-                {playlist.songs.map((song) => {
-                    {/*console.info(song);*/}
-
-                    return <Song key={song.id}
-                                 song={song}
-                                 {...props}
-                    />
-                  }
-                )}
+                      return <Song key={song.id}
+                                   song={song}
+                                   mode={'playlists'}
+                                   {...props}
+                      />
+                    }
+                  )}
+                </ul>
               </div>
             </div>
           )
         })}
-        <div className="playlists-bar">
-          <h2>My songs</h2>
-          <button>delete</button>
-        </div>
+
       </div>
     </div>
   )
