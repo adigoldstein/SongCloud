@@ -2,18 +2,21 @@ import React from 'react';
 import Playlist from './Playlist';
 
 
-export default function Playlists(props) {
+export default class Playlists extends React.Component {
   // console.info(props.data);
+render () {
+
+
 
   return (
     <div className="playlists-container">
       <div className="playlists-left">
         <div className="button-container">
-          <button className="add-playlist-btn">Add new playlist</button>
+          <button onClick={this.props.createPlaylist} className="add-playlist-btn">Add new playlist</button>
         </div>
 
         <ul className="playlists-list">
-          {props.playlists.map((playlist) => {
+          {this.props.playlists.map((playlist) => {
             {/*console.info(playlist);*/
             }
             return <li key={playlist.id} className="my-playlist">{playlist.title}</li>
@@ -23,10 +26,10 @@ export default function Playlists(props) {
         </ul>
       </div>
       <div className="playlists-right">
-        {props.playlists.map((playlist) => {
+        {this.props.playlists.map((playlist) => {
           return <div key={playlist.id}>
             <Playlist playlist={playlist}
-                      {...props}
+                      {...this.props}
             />
           </div>
         })
@@ -35,4 +38,5 @@ export default function Playlists(props) {
       </div>
     </div>
   )
+}
 }

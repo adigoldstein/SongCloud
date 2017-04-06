@@ -17,6 +17,7 @@ export default class Root extends React.Component {
 
     super();
     this.updateCurrentSong = this.updateCurrentSong.bind(this);
+    this.createPlaylist = this.createPlaylist.bind(this);
 
     this.state = {
       currentSong: {},
@@ -54,6 +55,27 @@ export default class Root extends React.Component {
 
   }
 
+  createPlaylist() {
+    const id = uuid();
+    console.info(id);
+    const newPlaylist = {
+      id: id,
+      title: 'My New Playlist(with a song)',
+      songs: [{
+        id: 250711755,
+        title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
+        duration: 219082,
+        stream_url: "https://api.soundcloud.com/tracks/250711755/stream",
+        uri: "https://api.soundcloud.com/tracks/250711755",
+        artwork_url: "https://i1.sndcdn.com/artworks-000150027827-4exjil-large.jpg"
+      }
+      ]
+    };
+    const newState = this.state.playlists.slice();
+    newState.push(newPlaylist);
+    console.info(newPlaylist);
+    this.setState({playlists: newState})
+  }
 
   updateCurrentSong(song) {
 
@@ -83,6 +105,7 @@ export default class Root extends React.Component {
           } }/>
           <Route path="/playlists" render={ () => {
             return <Playlists updateCurrentSong={ this.updateCurrentSong }
+                              createPlaylist={ this.createPlaylist }
                               playlists={ this.state.playlists}/>
           } }/>
         </Switch>

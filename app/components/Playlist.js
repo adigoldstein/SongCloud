@@ -5,16 +5,17 @@ export default class Playlist extends React.Component {
   constructor() {
     super();
 
-    // this.state = {}
+    this.state = {}
   }
 
 
   render() {
+    console.info(this.props.playlist.songs.length);
 
     return (
       <div key={this.props.playlist.id} className="each-playlist-container">
         <div className="playlists-bar">
-          <h2>{this.props.playlist.title}</h2>
+          <h2>{this.props.playlist.title}<div className="playlist-length"><span className="length-num">{this.props.playlist.songs.length}</span></div></h2>
           <button className="delete-btn">delete</button>
         </div>
         <div className="songs-display">

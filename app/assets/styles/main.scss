@@ -392,6 +392,7 @@ ul {
   display: flex;
   flex-direction: column;
   border-right: 1px solid #D8D8D8;
+  overflow: auto;
 }
 
 .button-container {
@@ -422,6 +423,7 @@ ul {
 
 .playlists-right {
   width: 100%;
+  overflow: auto;
 }
 
 .playlists-bar {
@@ -439,7 +441,18 @@ ul {
   font-size: 22px;
   margin-left: 20px;
 }
+.playlists-bar .playlist-length {
+  display: inline-block;
+  background-color: #2196F3;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
 
+.playlists-bar .length-num {
+
+}
 .playlists-bar .delete-btn {
   background-color: #fff;
   border: none;
