@@ -57,9 +57,20 @@ export default class Root extends React.Component {
   }
 
   deletePlaylist(index) {
-    console.info('done!!!!!!!');
-    console.info(index);
-    const newPlaylist = this.state.playlists.splice(index + 1, 1);
+    console.info('ran!!!!!!!');
+
+    let newPlaylist = [];
+    for (const i in this.state.playlists) {
+      // console.info('index' , index, typeof index);
+      // console.info('i' , i ,typeof i);
+      if (parseInt(i) !== index) {
+        newPlaylist.push(this.state.playlists[i])
+      }
+    }
+
+
+    // const newPlaylist = this.state.playlists.splice(index + 1, 1);
+
     console.info(newPlaylist);
     this.setState({playlists: newPlaylist})
 
@@ -109,6 +120,7 @@ export default class Root extends React.Component {
           }/>
           <Route path="/explore/:genre" render={ (props) => {
             return <Explore updateCurrentSong={ this.updateCurrentSong }
+                            createPlaylist={ this.createPlaylist }
                             match={props.match}
                             playlists={this.state.playlists}
             />

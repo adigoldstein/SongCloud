@@ -8,6 +8,7 @@ export default class Playlists extends React.Component {
     super();
 
     this.createNewPlaylist = this.createNewPlaylist.bind(this);
+    this.playlistsContent = this.playlistsContent.bind(this);
 
     this.state = {
       renameMode: false
@@ -21,6 +22,25 @@ export default class Playlists extends React.Component {
     this.props.createPlaylist();
     this.setState({renameMode: true})
   }
+
+  playlistsContent() {
+    if (this.props.playlists.length) {
+      return this.props.playlists.map((playlist, index) => {
+
+        return <div key={playlist.id}>
+          <Playlist playlist={playlist}
+                    deletePlaylist={ this.props.deletePlaylist }
+                    index={index}
+                    renameMode={this.state.renameMode}
+                    {...this.props}
+          />
+        </div>
+      })
+    } else {
+      return <div className="no-playlists-saved">Why don't you create some nice playlist?</div>
+    }
+  }
+
 
   render() {
 
@@ -43,20 +63,8 @@ export default class Playlists extends React.Component {
           </ul>
         </div>
         <div className="playlists-right">
-          {console.info('boooo', this.props.playlists.length)}
-          {this.props.playlists.map((playlist, index) => {
-            console.info(index);
 
-            return <div key={playlist.id}>
-              <Playlist playlist={playlist}
-                        deletePlaylist={ this.props.deletePlaylist }
-                        index={index}
-                        renameMode={this.state.renameMode}
-                        {...this.props}
-              />
-            </div>
-          })
-          }
+          {this.playlistsContent()}
 
         </div>
       </div>

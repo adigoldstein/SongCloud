@@ -7,6 +7,7 @@ export default class Explore extends React.Component {
   constructor() {
     super();
 
+
     this.state = {
       songs: [],
       songsLoading: 'loading',
@@ -67,13 +68,14 @@ export default class Explore extends React.Component {
 
 
   crateSongs() {
-    // console.info(this.props);
+    console.info(this.props);
 
     return (
       <ul className="songs-ul">
         {this.state.songs.map((song) => {
             return <Song key={song.id}
                          song={song}
+                         createPlaylist={ this.createPlaylist }
                          mode={'explore'}
                          {...this.props}
             />

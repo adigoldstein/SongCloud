@@ -3,6 +3,7 @@ import React from 'react';
 export default class song extends React.Component {
   constructor() {
     super();
+    this.createPlaylistMovetoExplore = this.createPlaylistMovetoExplore.bind(this)
     this.state = {
       dropdownIsShown : false
     }
@@ -26,6 +27,11 @@ export default class song extends React.Component {
 
     </div>
   }
+  createPlaylistMovetoExplore() {
+    console.info('yaaaaa');
+    console.info(this.props);
+    this.props.createPlaylist()
+  }
 
   toggleDisplay () {
     this.setState( {dropdownIsShown : !this.state.dropdownIsShown})
@@ -43,7 +49,7 @@ export default class song extends React.Component {
       if (this.props.mode === 'explore') {
         return(<div>
           <h3>Add To Playlist</h3>
-          <h4>Create playlist +</h4>
+          <h4 onClick={ this.createPlaylistMovetoExplore}>Create playlist +</h4>
         </div>)
       }
     }

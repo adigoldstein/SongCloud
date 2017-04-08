@@ -25,7 +25,7 @@ export default class Playlist extends React.Component {
   }
 
   render() {
-    console.info(this.props.index);
+    // console.info(this.props.index);
 
 
     return (
