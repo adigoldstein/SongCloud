@@ -76,25 +76,21 @@ export default class Root extends React.Component {
 
   }
 
-  createPlaylist() {
+  createPlaylist(from, song) {
+    console.info(song);
     const id = uuid();
-    console.info(id);
     const newPlaylist = {
       id: id,
-      title: 'My New Playlist(with a song)',
-      songs: [{
-        id: 250711755,
-        title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
-        duration: 219082,
-        stream_url: "https://api.soundcloud.com/tracks/250711755/stream",
-        uri: "https://api.soundcloud.com/tracks/250711755",
-        artwork_url: "https://i1.sndcdn.com/artworks-000150027827-4exjil-large.jpg"
-      }
+      title: 'My New Playlist',
+      songs: [
       ]
     };
     const newState = this.state.playlists.slice();
     newState.push(newPlaylist);
     console.info(newPlaylist);
+    if (from) {
+      newPlaylist.songs.push(song)
+    }
     this.setState({playlists: newState})
   }
 

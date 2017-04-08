@@ -28,9 +28,10 @@ export default class song extends React.Component {
     </div>
   }
   createPlaylistMovetoExplore() {
-    console.info('yaaaaa');
     console.info(this.props);
-    this.props.createPlaylist()
+    const from = 'song';
+    this.props.createPlaylist(from , this.props.song);
+    // ***************************************redirect to explore
   }
 
   toggleDisplay () {
