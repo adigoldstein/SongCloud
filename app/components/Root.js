@@ -18,6 +18,7 @@ export default class Root extends React.Component {
     super();
     this.updateCurrentSong = this.updateCurrentSong.bind(this);
     this.createPlaylist = this.createPlaylist.bind(this);
+    this.deletePlaylist = this.deletePlaylist.bind(this);
 
     this.state = {
       currentSong: {},
@@ -52,6 +53,15 @@ export default class Root extends React.Component {
         }
       ]
     }
+
+  }
+
+  deletePlaylist(index) {
+    console.info('done!!!!!!!');
+    console.info(index);
+    const newPlaylist = this.state.playlists.splice(index + 1, 1);
+    console.info(newPlaylist);
+    this.setState({playlists: newPlaylist})
 
   }
 
@@ -106,6 +116,7 @@ export default class Root extends React.Component {
           <Route path="/playlists" render={ () => {
             return <Playlists updateCurrentSong={ this.updateCurrentSong }
                               createPlaylist={ this.createPlaylist }
+                              deletePlaylist={ this.deletePlaylist }
                               playlists={ this.state.playlists}/>
           } }/>
         </Switch>

@@ -99,13 +99,13 @@ export default class Explore extends React.Component {
             <div className="genres-bar">
               <h2>Genres: </h2>
               <ul className="categories-menu">
-                <li className="genre"><NavLink to={"/explore/trance"}>Trance</NavLink></li>
-                <li className="genre"><NavLink to={"/explore/dubstep"}>Dubstep</NavLink></li>
-                <li className="genre"><NavLink to={"/explore/house"}>House</NavLink></li>
-                <li className="genre"><NavLink to={"/explore/techno"}>Techno</NavLink></li>
-                <li className="genre"><NavLink to={"/explore/pop"}>Pop</NavLink></li>
-                <li className="genre"><NavLink to={"/explore/indie"}>Indie</NavLink></li>
-                <li className="genre"><NavLink to={"/explore/reggaeton"}>Reggaeton</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/trance"} >Trance</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/dubstep"}>Dubstep</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/house"}>House</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/techno"}>Techno</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/pop"}>Pop</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/indie"}>Indie</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/reggaeton"}>Reggaeton</NavLink></li>
               </ul>
             </div>
 

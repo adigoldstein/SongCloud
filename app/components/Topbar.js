@@ -10,7 +10,7 @@ export default function Topbar() {
           <a href="/"><i className="nav-cloud cloud-fa fa fa-mixcloud  " aria-hidden="true"></i></a>
           <span className="nav-title">SongCloud</span>
           <ul>
-            <li><NavLink to="/explore"  activeClassName="selected">Explore</NavLink></li>
+            <li><NavLink to="/explore" activeClassName="selected">Explore</NavLink></li>
             <li><NavLink to="/playlists" activeClassName="selected">Playlists</NavLink></li>
           </ul>
         </div>
