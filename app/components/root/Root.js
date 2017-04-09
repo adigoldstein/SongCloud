@@ -11,6 +11,7 @@ import  Explore from  '../explore/Explore';
 import  Playlists from  '../playlists/Playlists';
 import  Player from  '../player/Player';
 
+import './root.scss';
 
 export default class Root extends React.Component {
   constructor() {

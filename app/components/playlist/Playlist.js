@@ -1,6 +1,7 @@
 import React from 'react';
 import Song from '../song/Song';
 
+import './playlist.scss';
 export default class Playlist extends React.Component {
   constructor() {
     super();

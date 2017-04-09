@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import Song from '../song/Song';
 
+import './explore.scss';
 
 export default class Explore extends React.Component {
   constructor() {
@@ -93,10 +94,10 @@ export default class Explore extends React.Component {
           <i className="explore-loading fa fa-refresh fa-spin fa-3x fa-fw"></i>
         </div>;
       case 'error':
-        return <div>Error!</div>;
+        return <div className="error">Error!</div>;
       case 'loaded':
         return (
-          <div>
+          <div className="expore-div">
             <div className="genres-bar">
               <h2>Genres: </h2>
               <ul className="categories-menu">

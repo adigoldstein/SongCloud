@@ -1,4 +1,5 @@
-export default function Signin() {
+import './signup.scss';
+export default function Signup() {
 
 
   return (
@@ -10,7 +11,7 @@ export default function Signin() {
       </div>
 
       <div className="sign-up-form">
-        <h2>Sign In</h2>
+        <h2>Create account</h2>
 
         <form className="form-container" action="">
           <label htmlFor="user">E-mail</label>
@@ -22,7 +23,7 @@ export default function Signin() {
       </div>
 
       <div className="sign-up-bottom">
-        <p>Don't have an account yet? <a href="#">Create Account</a></p>
+        <p>Already have an account? <a href="#">Sign In</a></p>
       </div>
 
 

@@ -1,0 +1,58 @@
+@import 'assets/styles/colors';
+
+.playlists-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  top: 65px;
+}
+
+.playlists-left {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #D8D8D8;
+  overflow: auto;
+}
+
+.button-container {
+  border-bottom: 1px solid #D8D8D8;
+  width: 180px;
+  margin: 0 auto;
+}
+
+.add-playlist-btn {
+  background-color: #2196F3;
+  border-radius: 2px;
+  width: 180px;
+  height: 30px;
+  margin: 30px auto;
+  font-size: 13px;
+  color: #FFFFFF;
+  box-shadow: none;
+  border: none;
+}
+
+.playlists-list {
+  list-style: none;
+}
+
+.my-playlist {
+  margin-bottom: 20px;
+}
+
+.playlists-right {
+  width: 100%;
+  overflow: auto;
+}
+
+.no-playlists-saved {
+
+  display: inline-block;
+  margin: 150px 31%;
+  width: 286px;
+
+}

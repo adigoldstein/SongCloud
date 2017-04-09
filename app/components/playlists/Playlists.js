@@ -2,6 +2,8 @@ import React from 'react';
 import Playlist from '../playlist/Playlist';
 
 
+import './playlists.scss';
+
 export default class Playlists extends React.Component {
   // console.info(props.data);
   constructor() {

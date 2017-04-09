@@ -1,0 +1,66 @@
+@import 'assets/styles/colors';
+
+.sign-up {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sign-cloud {
+  font-size: 150px;
+  color: #2196F3;;
+  //align-self: center;
+
+}
+
+.sign-up h1 {
+  color: #2196F3;
+}
+
+.sign-up-form {
+  display: flex;
+  height: 400px;
+  flex-direction: column;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 415px;
+}
+
+.sign-up-form h2 {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.sign-up-form label {
+  color: #2196F3;
+  font-size: 16px;
+}
+
+.sign-up-form input {
+  border: none;
+  border-bottom: 2px solid #2196F3;
+
+}
+
+.sign-up button {
+  height: 30px;
+  width: 87px;
+  border-radius: 2px;
+  background-color: #2196F3;
+  font-size: 13px;
+  margin: 40px auto;
+  color: #FFF;
+
+}
+
+.sign-up-bottom {
+  margin-bottom: 150px;
+}
+
