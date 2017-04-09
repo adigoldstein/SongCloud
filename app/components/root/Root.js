@@ -6,10 +6,10 @@ import {
 } from 'react-router-dom';
 import uuid from 'uuid';
 
-import  Topbar from  './Topbar';
-import  Explore from  './Explore';
-import  Playlists from  './Playlists';
-import  Player from  './Player';
+import  Topbar from  '../topbar/Topbar';
+import  Explore from  '../explore/Explore';
+import  Playlists from  '../playlists/Playlists';
+import  Player from  '../player/Player';
 
 
 export default class Root extends React.Component {
@@ -76,22 +76,31 @@ export default class Root extends React.Component {
 
   }
 
-  createPlaylist(fromSong, song) {
+  createPlaylist(song) {
     console.info(song);
     const id = uuid();
     const newPlaylist = {
       id: id,
       title: 'My New Playlist',
-      songs: [
-      ]
+      songs: [],
+      isInEditMode: true
     };
+
     const newState = this.state.playlists.slice();
     newState.push(newPlaylist);
     console.info(newPlaylist);
-    if (fromSong) {
+    if (song) {
       newPlaylist.songs.push(song)
     }
-    this.setState({playlists: newState})
+
+    this.setState({
+      playlists: newState
+    }, () => {
+      if (song) {
+        // Navigate to Playlists
+        this.props.history.push('/playlists');
+      }
+    });
   }
 
   updateCurrentSong(song) {

@@ -5,9 +5,9 @@ import {
   Switch
 } from 'react-router-dom';
 
-import  Signup from  './Signup';
-import  Signin from  './Signin';
-import Root from './Root';
+import  Signup from  '../signup/Signup';
+import  Signin from  '../signin/Signin';
+import Root from '../root/Root';
 
 export default function Routes() {
   return (

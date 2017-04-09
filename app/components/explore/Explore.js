@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import Song from './Song';
+import Song from '../song/Song';
 
 
 export default class Explore extends React.Component {
@@ -75,7 +75,6 @@ export default class Explore extends React.Component {
         {this.state.songs.map((song) => {
             return <Song key={song.id}
                          song={song}
-                         createPlaylist={ this.createPlaylist }
                          mode={'explore'}
                          {...this.props}
             />

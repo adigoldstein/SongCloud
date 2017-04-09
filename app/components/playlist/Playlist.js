@@ -1,20 +1,26 @@
 import React from 'react';
-import Song from './Song';
+import Song from '../song/Song';
 
 export default class Playlist extends React.Component {
   constructor() {
     super();
     this.toggleRename = this.toggleRename.bind(this);
+    this.focus = this.focus.bind(this);
+
 
     this.state = {}
+  }
+
+  focus() {
+    this.textInput.focus();
   }
 
   toggleRename() {
     // console.info('length,', this.props.playlists.length);
     // console.info('bool', this.props.rename);
     // console.info('ind', this.props.index +1 );
-    if (this.props.renameMode && this.props.index + 1 === this.props.playlists.length) {
-      return <input type="text" className="nename-playlist-input"/>
+    if (this.props.playlist.isInEditMode && this.props.index + 1 === this.props.playlists.length) {
+      return <input type="text" className="nename-playlist-input" ref={(input) => { this.textInput = input; }}/>
     } else {
       return <h2>{this.props.playlist.title}
         <div className="playlist-length"><span className="length-num">{this.props.playlist.songs.length}</span></div>
@@ -23,6 +29,7 @@ export default class Playlist extends React.Component {
 
 
   }
+
 
   render() {
     // console.info(this.props.index);

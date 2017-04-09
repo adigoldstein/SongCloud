@@ -1,5 +1,5 @@
 import React from 'react';
-import Playlist from './Playlist';
+import Playlist from '../playlist/Playlist';
 
 
 export default class Playlists extends React.Component {
@@ -10,9 +10,9 @@ export default class Playlists extends React.Component {
     this.createNewPlaylist = this.createNewPlaylist.bind(this);
     this.playlistsContent = this.playlistsContent.bind(this);
 
-    this.state = {
-      renameMode: false
-    }
+    // this.state = {
+    //   renameMode: false
+    // }
 
 
   }
@@ -20,7 +20,7 @@ export default class Playlists extends React.Component {
   createNewPlaylist() {
 
     this.props.createPlaylist();
-    this.setState({renameMode: true})
+    // this.setState({renameMode: true})
   }
 
   playlistsContent() {
@@ -31,7 +31,6 @@ export default class Playlists extends React.Component {
           <Playlist playlist={playlist}
                     deletePlaylist={ this.props.deletePlaylist }
                     index={index}
-                    renameMode={this.state.renameMode}
                     {...this.props}
           />
         </div>
