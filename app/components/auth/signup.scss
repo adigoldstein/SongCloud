@@ -11,13 +11,13 @@
 
 .sign-cloud {
   font-size: 150px;
-  color: #2196F3;;
+  color: $blue;
   //align-self: center;
 
 }
 
 .sign-up h1 {
-  color: #2196F3;
+  color: $blue;
 }
 
 .sign-up-form {
@@ -39,13 +39,13 @@
 }
 
 .sign-up-form label {
-  color: #2196F3;
+  color: $blue;
   font-size: 16px;
 }
 
 .sign-up-form input {
   border: none;
-  border-bottom: 2px solid #2196F3;
+  border-bottom: 2px solid $blue;
 
 }
 
@@ -53,7 +53,7 @@
   height: 30px;
   width: 87px;
   border-radius: 2px;
-  background-color: #2196F3;
+  background-color: $blue;
   font-size: 13px;
   margin: 40px auto;
   color: #FFF;
