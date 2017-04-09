@@ -76,7 +76,7 @@ export default class Root extends React.Component {
 
   }
 
-  createPlaylist(from, song) {
+  createPlaylist(fromSong, song) {
     console.info(song);
     const id = uuid();
     const newPlaylist = {
@@ -88,7 +88,7 @@ export default class Root extends React.Component {
     const newState = this.state.playlists.slice();
     newState.push(newPlaylist);
     console.info(newPlaylist);
-    if (from) {
+    if (fromSong) {
       newPlaylist.songs.push(song)
     }
     this.setState({playlists: newState})
