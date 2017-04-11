@@ -2,6 +2,8 @@ import React from 'react';
 import Song from '../song/Song';
 
 import './playlist.scss';
+
+
 export default class Playlist extends React.Component {
   constructor() {
     super();
@@ -12,16 +14,35 @@ export default class Playlist extends React.Component {
     this.state = {}
   }
 
+  enterPressedinRename(e) {
+    console.info(e.key);
+    if (e.key === 'Enter') {
+      this.props.updatePlaylistTitle(this.props.playlist, this.textInput);
+    }
+}
+
+  componentDidMount() {
+    if (this.textInput) {
+      this.focus()
+    }
+  }
+
   focus() {
     this.textInput.focus();
   }
 
   toggleRename() {
-    // console.info('length,', this.props.playlists.length);
-    // console.info('bool', this.props.rename);
-    // console.info('ind', this.props.index +1 );
+
     if (this.props.playlist.isInEditMode && this.props.index + 1 === this.props.playlists.length) {
-      return <input type="text" className="nename-playlist-input" ref={(input) => { this.textInput = input; }}/>
+      return <input type="text"
+                    defaultValue={this.props.playlist.title}
+                    className="nename-playlist-input"
+                    ref={(input) => {
+                      this.textInput = input;
+                    }}
+                    onBlur={() => this.props.updatePlaylistTitle(this.props.playlist, this.textInput)}
+                    onKeyUp={(e) => this.enterPressedinRename(e) }
+      />
     } else {
       return <h2>{this.props.playlist.title}
         <div className="playlist-length"><span className="length-num">{this.props.playlist.songs.length}</span></div>

@@ -20,12 +20,14 @@ export default class Root extends React.Component {
     this.updateCurrentSong = this.updateCurrentSong.bind(this);
     this.createPlaylist = this.createPlaylist.bind(this);
     this.deletePlaylist = this.deletePlaylist.bind(this);
+    this.updatePlaylistTitle = this.updatePlaylistTitle.bind(this);
 
     this.state = {
       currentSong: {},
       playlists: [
         {
           id: 123,
+          isInEditMode: false,
           title: 'My Playlist1',
           songs: [{
             id: 250711755,
@@ -40,6 +42,7 @@ export default class Root extends React.Component {
         },
         {
           id: 456,
+          isInEditMode: false,
           title: 'My Playlist2',
           songs: [{
             id: 250711755,
@@ -54,6 +57,24 @@ export default class Root extends React.Component {
         }
       ]
     }
+
+  }
+
+  updatePlaylistTitle(playlistObj, inputElem) {
+    playlistObj.title = inputElem.value;
+    playlistObj.isInEditMode = false;
+    let newPlaylist = [];
+    this.state.playlists.map((playlist) => {
+      console.info(playlist);
+      if (playlist.id === playlistObj.id) {
+        newPlaylist.push(playlistObj);
+      } else {
+        newPlaylist.push(playlist);
+      }
+    })
+    this.setState({playlists : newPlaylist})
+
+
 
   }
 
@@ -135,6 +156,7 @@ export default class Root extends React.Component {
             return <Playlists updateCurrentSong={ this.updateCurrentSong }
                               createPlaylist={ this.createPlaylist }
                               deletePlaylist={ this.deletePlaylist }
+                              updatePlaylistTitle={ this.updatePlaylistTitle }
                               playlists={ this.state.playlists}/>
           } }/>
         </Switch>

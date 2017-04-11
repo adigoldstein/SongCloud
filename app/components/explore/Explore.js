@@ -42,7 +42,7 @@ export default class Explore extends React.Component {
 
     //if genre changed
     if (prevProps.match.params.genre !== this.props.match.params.genre) {
-      this.setState({offset: 0}, () => {
+      this.setState({offset: 0 , songsLoading: 'loading'}, () => {
         this.GetXhr();
       });
     }
@@ -56,14 +56,14 @@ export default class Explore extends React.Component {
 
   nextPage() {
     this.setState(
-      {offset: this.state.offset + this.state.limit}
+      {offset: this.state.offset + this.state.limit , songsLoading: 'loading'}
     )
 
   }
 
   prevPage() {
     this.setState(
-      {offset: this.state.offset - this.state.limit}
+      {offset: this.state.offset - this.state.limit , songsLoading: 'loading'}
     )
   }
 
