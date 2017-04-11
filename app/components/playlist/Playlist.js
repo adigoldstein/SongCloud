@@ -19,7 +19,7 @@ export default class Playlist extends React.Component {
     if (e.key === 'Enter') {
       this.props.updatePlaylistTitle(this.props.playlist, this.textInput);
     }
-}
+  }
 
   componentDidMount() {
     if (this.textInput) {
@@ -33,7 +33,7 @@ export default class Playlist extends React.Component {
 
   toggleRename() {
 
-    if (this.props.playlist.isInEditMode && this.props.index + 1 === this.props.playlists.length) {
+    if (this.props.playlist.isInEditMode) {
       return <input type="text"
                     defaultValue={this.props.playlist.title}
                     className="nename-playlist-input"
@@ -44,7 +44,8 @@ export default class Playlist extends React.Component {
                     onKeyUp={(e) => this.enterPressedinRename(e) }
       />
     } else {
-      return <h2>{this.props.playlist.title}
+      return <h2 onClick={() => this.props.changeToEditmode(this.props.playlist)}>
+        {this.props.playlist.title}
         <div className="playlist-length"><span className="length-num">{this.props.playlist.songs.length}</span></div>
       </h2>
     }
@@ -54,8 +55,6 @@ export default class Playlist extends React.Component {
 
 
   render() {
-    // console.info(this.props.index);
-
 
     return (
       <div key={this.props.playlist.id} className="each-playlist-container">

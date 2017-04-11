@@ -21,6 +21,7 @@ export default class Root extends React.Component {
     this.createPlaylist = this.createPlaylist.bind(this);
     this.deletePlaylist = this.deletePlaylist.bind(this);
     this.updatePlaylistTitle = this.updatePlaylistTitle.bind(this);
+    this.changeToEditmode = this.changeToEditmode.bind(this);
 
     this.state = {
       currentSong: {},
@@ -58,6 +59,19 @@ export default class Root extends React.Component {
       ]
     }
 
+  }
+
+  changeToEditmode(playlistToEdit) {
+    playlistToEdit.isInEditMode = true;
+    const newPlaylist = [];
+    this.state.playlists.map((playlist) => {
+      if (playlistToEdit.id === playlist.id) {
+        newPlaylist.push(playlistToEdit)
+      } else {
+        newPlaylist.push(playlist)
+      }
+    })
+    this.setState({playlists : newPlaylist})
   }
 
   updatePlaylistTitle(playlistObj, inputElem) {
@@ -157,6 +171,7 @@ export default class Root extends React.Component {
                               createPlaylist={ this.createPlaylist }
                               deletePlaylist={ this.deletePlaylist }
                               updatePlaylistTitle={ this.updatePlaylistTitle }
+                              changeToEditmode={this.changeToEditmode }
                               playlists={ this.state.playlists}/>
           } }/>
         </Switch>
