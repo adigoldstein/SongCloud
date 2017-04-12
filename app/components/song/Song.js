@@ -1,10 +1,13 @@
 import React from 'react';
 
 import './song.scss';
+
+import store from '../../store';
+
 export default class song extends React.Component {
   constructor() {
     super();
-    this.createPlaylistMovetoExplore = this.createPlaylistMovetoExplore.bind(this)
+    this.createPlaylistAndNavigateToExplore = this.createPlaylistAndNavigateToExplore.bind(this);
     this.state = {
       dropdownIsShown : false
     }
@@ -12,7 +15,7 @@ export default class song extends React.Component {
   }
 
   dropDownElem () {
-    return this.state.dropdownIsShown &&   <div className="song-dropdown">
+    return this.state.dropdownIsShown &&  <div className="song-dropdown">
 
       {this.playlistElemChooser()}
 
@@ -28,10 +31,11 @@ export default class song extends React.Component {
 
     </div>
   }
-  createPlaylistMovetoExplore() {
-    console.info(this.props);
+  createPlaylistAndNavigateToExplore() {
+
     this.props.createPlaylist(this.props.song);
   }
+
 
   toggleDisplay () {
     this.setState( {dropdownIsShown : !this.state.dropdownIsShown})
@@ -43,13 +47,12 @@ export default class song extends React.Component {
     if (this.props.mode === 'playlists') {
       return(<div>
         <h3>Edit Playlist</h3>
-        {/*<h4>Edit Playlists</h4>*/}
       </div>)
     } else {
       if (this.props.mode === 'explore') {
         return(<div>
           <h3>Add To Playlist</h3>
-          <h4 onClick={ this.createPlaylistMovetoExplore}>Create playlist +</h4>
+          <h4 onClick={ this.createPlaylistAndNavigateToExplore}>Create playlist +</h4>
         </div>)
       }
     }
@@ -58,7 +61,7 @@ export default class song extends React.Component {
 
   render() {
 
-    // console.info(this.props);
+
     const minutes = Math.floor(parseInt(this.props.song.duration) / 60000);
     const seconds = ((parseInt(this.props.song.duration % 60000) / 1000).toFixed(0));
     const songDuration = (seconds === 60 ? (minutes + 1) + ":00" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
@@ -71,7 +74,7 @@ export default class song extends React.Component {
 
       <li className="songs-li" key={this.props.song.id} title={this.props.song.title}>
         <div>
-          <img onClick={() => this.props.updateCurrentSong(this.props.song)} src={artWork.replace('large', 't300x300')}
+          <img onClick={() => store.dispatch({ type: 'UPDATE_CURRENT_TRACK', song: this.props.song})} src={artWork.replace('large', 't300x300')}
                alt="Song photo" className="song-img"/>
           {/*<div style={{ backgroundImage: `url (" value.artwork_url.replace('large', 't300x300') ")` }}></div>*/}
           <div className="song-title">{this.props.song.title}</div>

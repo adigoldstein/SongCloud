@@ -69,7 +69,6 @@ export default class Explore extends React.Component {
 
 
   crateSongs() {
-    console.info(this.props);
 
     return (
       <ul className="songs-ul">

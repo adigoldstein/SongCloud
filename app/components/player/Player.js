@@ -1,8 +1,16 @@
 import './player.scss';
+
+import store from '../../store'
 export default function Player(props) {
 
+  const storeData =  store.getState();
+  console.info(storeData);
 
-  const urlSong = `${props.currentSong.stream_url}?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z`;
+  if (!storeData.currentTrack) {
+    return <div className="playerShifted"></div>
+  }
+
+  const urlSong = `${storeData.currentTrack.stream_url}?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z`;
   return (
       <footer className="player">
         <img className="player-img" src={ props.currentSong.artwork_url } alt="Song thumbnail"/>

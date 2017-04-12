@@ -4,7 +4,21 @@ import 'font-awesome/css/font-awesome.css';
 import './assets/styles/main.scss';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import store from './store'
 
 import Route from './components/routes/Routes';
 
-ReactDOM.render(<Route/>, document.querySelector('#root'));
+function renderApp() {
+
+  ReactDOM.render(
+    <Route/>,
+    document.querySelector('#root')
+  );
+}
+
+
+renderApp();
+
+store.subscribe( ()=> {
+  renderApp();
+})
