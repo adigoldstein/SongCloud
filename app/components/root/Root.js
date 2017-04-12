@@ -71,23 +71,27 @@ export default class Root extends React.Component {
         newPlaylist.push(playlist)
       }
     })
-    this.setState({playlists : newPlaylist})
+    this.setState({playlists: newPlaylist})
   }
 
   updatePlaylistTitle(playlistObj, inputElem) {
+    const initTitle = playlistObj.title;
+    console.info(initTitle);
     playlistObj.title = inputElem.value;
+    if (playlistObj.title === '' || playlistObj.title === ' ') {
+      playlistObj.title = initTitle;
+    }
     playlistObj.isInEditMode = false;
     let newPlaylist = [];
     this.state.playlists.map((playlist) => {
-      console.info(playlist.id);
       if (playlist.id === playlistObj.id) {
+
         newPlaylist.push(playlistObj);
       } else {
         newPlaylist.push(playlist);
       }
     })
-    this.setState({playlists : newPlaylist})
-
+    this.setState({playlists: newPlaylist})
 
 
   }
