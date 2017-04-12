@@ -14,10 +14,15 @@ export default class Playlist extends React.Component {
     this.state = {}
   }
 
-  enterPressedinRename(e) {
-    console.info(e.key);
+  enterPressedInRename(e) {
     if (e.key === 'Enter') {
       this.props.updatePlaylistTitle(this.props.playlist, this.textInput);
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.textInput) {
+      this.focus()
     }
   }
 
@@ -41,7 +46,7 @@ export default class Playlist extends React.Component {
                       this.textInput = input;
                     }}
                     onBlur={() => this.props.updatePlaylistTitle(this.props.playlist, this.textInput)}
-                    onKeyUp={(e) => this.enterPressedinRename(e) }
+                    onKeyUp={(e) => this.enterPressedInRename(e) }
       />
     } else {
       return <h2 onClick={() => this.props.changeToEditmode(this.props.playlist)}>

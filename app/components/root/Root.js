@@ -29,7 +29,7 @@ export default class Root extends React.Component {
         {
           id: 123,
           isInEditMode: false,
-          title: 'My Playlist1',
+          title: 'My Songs',
           songs: [{
             id: 250711755,
             title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -44,7 +44,7 @@ export default class Root extends React.Component {
         {
           id: 456,
           isInEditMode: false,
-          title: 'My Playlist2',
+          title: 'Party Time',
           songs: [{
             id: 250711755,
             title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -79,7 +79,7 @@ export default class Root extends React.Component {
     playlistObj.isInEditMode = false;
     let newPlaylist = [];
     this.state.playlists.map((playlist) => {
-      console.info(playlist);
+      console.info(playlist.id);
       if (playlist.id === playlistObj.id) {
         newPlaylist.push(playlistObj);
       } else {
@@ -93,12 +93,9 @@ export default class Root extends React.Component {
   }
 
   deletePlaylist(index) {
-    console.info('ran!!!!!!!');
 
     let newPlaylist = [];
     for (const i in this.state.playlists) {
-      // console.info('index' , index, typeof index);
-      // console.info('i' , i ,typeof i);
       if (parseInt(i) !== index) {
         newPlaylist.push(this.state.playlists[i])
       }
@@ -113,7 +110,6 @@ export default class Root extends React.Component {
   }
 
   createPlaylist(song) {
-    console.info(song);
     const id = uuid();
     const newPlaylist = {
       id: id,
@@ -124,7 +120,6 @@ export default class Root extends React.Component {
 
     const newState = this.state.playlists.slice();
     newState.push(newPlaylist);
-    console.info(newPlaylist);
     if (song) {
       newPlaylist.songs.push(song)
     }
