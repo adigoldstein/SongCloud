@@ -7,14 +7,14 @@ export default function Player(props) {
   console.info(storeData);
 
   if (!storeData.currentTrack) {
-    return <div className="playerShifted"></div>
+    return <div className="player Shifted"></div>
   }
 
   const urlSong = `${storeData.currentTrack.stream_url}?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z`;
   return (
       <footer className="player">
-        <img className="player-img" src={ props.currentSong.artwork_url } alt="Song thumbnail"/>
-        <span className="song-name-player">{props.currentSong.title}</span>
+        <img className="player-img" src={ storeData.currentTrack.artwork_url } alt="Song thumbnail"/>
+        <span className="song-name-player">{storeData.currentTrack.title}</span>
         <audio className="audio-elem"
                controls={true}
                src={ urlSong }

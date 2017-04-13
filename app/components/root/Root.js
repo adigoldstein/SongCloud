@@ -17,7 +17,6 @@ export default class Root extends React.Component {
   constructor() {
 
     super();
-    this.updateCurrentSong = this.updateCurrentSong.bind(this);
     this.createPlaylist = this.createPlaylist.bind(this);
     this.deletePlaylist = this.deletePlaylist.bind(this);
     this.updatePlaylistTitle = this.updatePlaylistTitle.bind(this);
@@ -138,13 +137,6 @@ export default class Root extends React.Component {
     });
   }
 
-  updateCurrentSong(song) {
-
-
-    const songRecived = Object.assign({}, song);
-
-    this.setState({currentSong: songRecived})
-  }
 
 
   render() {
@@ -159,8 +151,7 @@ export default class Root extends React.Component {
           <Route exact path="/explore" component={ () => <Redirect to="/explore/trance"/>
           }/>
           <Route path="/explore/:genre" render={ (props) => {
-            return <Explore updateCurrentSong={ this.updateCurrentSong }
-                            createPlaylist={ this.createPlaylist }
+            return <Explore createPlaylist={ this.createPlaylist }
                             match={props.match}
                             playlists={this.state.playlists}
             />
