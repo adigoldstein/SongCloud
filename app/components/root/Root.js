@@ -165,7 +165,7 @@ export default class Root extends React.Component {
                               playlists={ this.state.playlists}/>
           } }/>
         </Switch>
-        <Player currentSong={ this.state.currentSong }/>
+        <Player />
       </div>
     )
   }

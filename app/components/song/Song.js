@@ -7,7 +7,6 @@ import store from '../../store';
 export default class song extends React.Component {
   constructor() {
     super();
-    this.createPlaylistAndNavigateToExplore = this.createPlaylistAndNavigateToExplore.bind(this);
     this.state = {
       dropdownIsShown : false
     }
@@ -31,10 +30,6 @@ export default class song extends React.Component {
 
     </div>
   }
-  createPlaylistAndNavigateToExplore() {
-
-    this.props.createPlaylist(this.props.song);
-  }
 
 
   toggleDisplay () {
@@ -52,7 +47,7 @@ export default class song extends React.Component {
       if (this.props.mode === 'explore') {
         return(<div>
           <h3>Add To Playlist</h3>
-          <h4 onClick={ this.createPlaylistAndNavigateToExplore}>Create playlist +</h4>
+          <h4 onClick={ ()=> store.dispatch({ type: 'CREATE_NEW_PLAYLIST', song: this.props.song})}>Create playlist +</h4>
         </div>)
       }
     }

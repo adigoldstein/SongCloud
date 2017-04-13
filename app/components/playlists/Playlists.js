@@ -1,5 +1,7 @@
 import React from 'react';
 import Playlist from '../playlist/Playlist';
+import store from '../../store'
+
 
 
 import './playlists.scss';
@@ -21,7 +23,7 @@ export default class Playlists extends React.Component {
 
   createNewPlaylist() {
 
-    this.props.createPlaylist();
+    this.props.Playlists();
     // this.setState({renameMode: true})
   }
 
@@ -44,7 +46,8 @@ export default class Playlists extends React.Component {
 
 
   render() {
-
+    const storeData =  store.getState()
+    console.info(storeData);
 
     return (
       <div className="playlists-container">
@@ -54,6 +57,8 @@ export default class Playlists extends React.Component {
           </div>
 
           <ul className="playlists-list">
+
+            }
             {this.props.playlists.map((playlist) => {
               {/*console.info(playlist);*/
               }

@@ -5,13 +5,17 @@ import './assets/styles/main.scss';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import store from './store'
+import { Provider } from 'react-redux';
 
-import Route from './components/routes/Routes';
+import Routes from './components/routes/Routes';
 
 function renderApp() {
 
   ReactDOM.render(
-    <Route/>,
+
+    <Provider store={ store }>
+      <Routes />
+    </Provider>,
     document.querySelector('#root')
   );
 }
@@ -19,6 +23,3 @@ function renderApp() {
 
 renderApp();
 
-store.subscribe( ()=> {
-  renderApp();
-})
