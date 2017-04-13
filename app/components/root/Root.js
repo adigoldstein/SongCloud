@@ -157,8 +157,7 @@ export default class Root extends React.Component {
             />
           } }/>
           <Route path="/playlists" render={ () => {
-            return <Playlists updateCurrentSong={ this.updateCurrentSong }
-                              createPlaylist={ this.createPlaylist }
+            return <Playlists createPlaylist={ this.createPlaylist }
                               deletePlaylist={ this.deletePlaylist }
                               updatePlaylistTitle={ this.updatePlaylistTitle }
                               changeToEditmode={this.changeToEditmode }
