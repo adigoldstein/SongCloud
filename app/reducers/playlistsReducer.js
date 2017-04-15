@@ -3,7 +3,7 @@ const dummyData = [
   {
     id: 123,
     isInEditMode: false,
-    title: 'My Songs',
+    title: 'Redux My Songs',
     songs: [{
       id: 250711755,
       title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -18,7 +18,7 @@ const dummyData = [
   {
     id: 456,
     isInEditMode: false,
-    title: 'Party Time',
+    title: 'Redux Party Time',
     songs: [{
       id: 250711755,
       title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -35,6 +35,7 @@ const dummyData = [
 export default function PlaylistReducer(playlists = dummyData, action) {
   if (action.type === 'CREATE_NEW_PLAYLIST') {
     console.info(action.song, action);
+    let copyOfPlaylists = [...playlists];
     const id = uuid();
     const newPlaylist = {
       id: id,
@@ -42,21 +43,34 @@ export default function PlaylistReducer(playlists = dummyData, action) {
       songs: [],
       isInEditMode: true
     };
-
-    const newState = playlists;
-    newState.push(newPlaylist);
     if (action.song) {
       newPlaylist.songs.push(action.song)
     }
 
+    copyOfPlaylists.push(newPlaylist);
+    console.info(copyOfPlaylists, 'playlistdata after adding');
 
-  }
-  ;
-  return playlists
 
-  if (song) {
-    // Navigate to Playlists*******************************************
-    this.props.history.push('/playlists');
+    return copyOfPlaylists;
   }
+
+  if (action.type === 'DELETE_PLAYLIST') {
+    console.info(action);
+    let newPlaylist = [];
+    for (const i in playlists) {
+      if (parseInt(i) !== action.index) {
+        newPlaylist.push(playlists[i])
+      }
+    }
+    return newPlaylist
+  }
+
+  return playlists;
+
+  // if (song) {
+  //   // Navigate to Playlists*******************************************
+  //   this.props.history.push('/playlists');
+  // }
+
+
 }
-

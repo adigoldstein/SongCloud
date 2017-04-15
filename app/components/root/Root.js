@@ -18,7 +18,7 @@ export default class Root extends React.Component {
 
     super();
     this.createPlaylist = this.createPlaylist.bind(this);
-    this.deletePlaylist = this.deletePlaylist.bind(this);
+
     this.updatePlaylistTitle = this.updatePlaylistTitle.bind(this);
     this.changeToEditmode = this.changeToEditmode.bind(this);
 
@@ -28,7 +28,7 @@ export default class Root extends React.Component {
         {
           id: 123,
           isInEditMode: false,
-          title: 'My Songs',
+          title: 'Old Data1',
           songs: [{
             id: 250711755,
             title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -43,7 +43,7 @@ export default class Root extends React.Component {
         {
           id: 456,
           isInEditMode: false,
-          title: 'Party Time',
+          title: 'Old Data2',
           songs: [{
             id: 250711755,
             title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -95,22 +95,6 @@ export default class Root extends React.Component {
 
   }
 
-  deletePlaylist(index) {
-
-    let newPlaylist = [];
-    for (const i in this.state.playlists) {
-      if (parseInt(i) !== index) {
-        newPlaylist.push(this.state.playlists[i])
-      }
-    }
-
-
-    // const newPlaylist = this.state.playlists.splice(index + 1, 1);
-
-    console.info(newPlaylist);
-    this.setState({playlists: newPlaylist})
-
-  }
 
   createPlaylist(song) {
     const id = uuid();
@@ -151,17 +135,15 @@ export default class Root extends React.Component {
           <Route exact path="/explore" component={ () => <Redirect to="/explore/trance"/>
           }/>
           <Route path="/explore/:genre" render={ (props) => {
-            return <Explore createPlaylist={ this.createPlaylist }
-                            match={props.match}
-                            playlists={this.state.playlists}
+            return <Explore match={props.match}
+                            // playlists={this.state.playlists}
             />
           } }/>
           <Route path="/playlists" render={ () => {
-            return <Playlists createPlaylist={ this.createPlaylist }
-                              deletePlaylist={ this.deletePlaylist }
-                              updatePlaylistTitle={ this.updatePlaylistTitle }
+            return <Playlists updatePlaylistTitle={ this.updatePlaylistTitle }
                               changeToEditmode={this.changeToEditmode }
-                              playlists={ this.state.playlists}/>
+                              // playlists={ this.state.playlists}
+            />
           } }/>
         </Switch>
         <Player />

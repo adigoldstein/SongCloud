@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 
 
-import Playlists from './reducers/playlists';
+import Playlists from './reducers/playlistsReducer';
 import currentTrack from './reducers/current-track';
 
 

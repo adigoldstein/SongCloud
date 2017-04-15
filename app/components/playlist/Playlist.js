@@ -1,10 +1,14 @@
 import React from 'react';
 import Song from '../song/Song';
+import store from '../../store';
+import { connect } from 'react-redux';
+
+
 
 import './playlist.scss';
 
 
-export default class Playlist extends React.Component {
+class Playlist extends React.Component {
   constructor() {
     super();
     this.toggleRename = this.toggleRename.bind(this);
@@ -65,7 +69,7 @@ export default class Playlist extends React.Component {
       <div key={this.props.playlist.id} className="each-playlist-container">
         <div className="playlists-bar">
           {this.toggleRename()}
-          <button onClick={() => this.props.deletePlaylist(this.props.index)} className="delete-btn">delete</button>
+          <button onClick={()=>this.props.updateCurrentTrack(this.props.index)} className="delete-btn">delete</button>
         </div>
         <div className="songs-display">
           <ul className="songs-ul">
@@ -89,3 +93,20 @@ export default class Playlist extends React.Component {
   }
 
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    updateCurrentTrack(index){
+      return dispatch({
+        type:'DELETE_PLAYLIST',
+        index: index
+      })
+    }
+  }
+}
+function mapStateToProps(stateData) {
+  return {
+    playlists: stateData.Playlists
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Playlist);

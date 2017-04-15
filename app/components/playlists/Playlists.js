@@ -1,35 +1,30 @@
 import React from 'react';
 import Playlist from '../playlist/Playlist';
+import { connect } from 'react-redux';
 import store from '../../store'
 
 
 
 import './playlists.scss';
 
-export default class Playlists extends React.Component {
+class Playlists extends React.Component {
   // console.info(props.data);
   constructor() {
     super();
 
-    this.createNewPlaylist = this.createNewPlaylist.bind(this);
+
     this.playlistsContent = this.playlistsContent.bind(this);
 
-    // this.state = {
-    //   renameMode: false
-    // }
-
 
   }
 
-  createNewPlaylist() {
 
-    this.props.Playlists();
-    // this.setState({renameMode: true})
-  }
 
   playlistsContent() {
-    if (this.props.playlists.length) {
-      return this.props.playlists.map((playlist, index) => {
+    const storeData =  store.getState()
+    console.info(storeData);
+    if (storeData.Playlists.length) {
+      return storeData.Playlists.map((playlist, index) => {
 
         return <div key={playlist.id}>
           <Playlist playlist={playlist}
@@ -46,19 +41,18 @@ export default class Playlists extends React.Component {
 
 
   render() {
-    const storeData =  store.getState()
-    console.info(storeData);
+
 
     return (
       <div className="playlists-container">
         <div className="playlists-left">
           <div className="button-container">
-            <button onClick={this.createNewPlaylist} className="add-playlist-btn">Add new playlist</button>
+            <button onClick={()=> store.dispatch({ type: 'CREATE_NEW_PLAYLIST'})} className="add-playlist-btn">Add new playlist</button>
           </div>
 
           <ul className="playlists-list">
 
-            }
+
             {this.props.playlists.map((playlist) => {
               {/*console.info(playlist);*/
               }
@@ -77,3 +71,10 @@ export default class Playlists extends React.Component {
     )
   }
 }
+function mapStateToProps(stateData) {
+  return {
+    playlists: stateData.Playlists
+  }
+}
+
+export default connect(mapStateToProps)(Playlists);
