@@ -15,9 +15,7 @@ class Playlists extends React.Component {
 
     this.playlistsContent = this.playlistsContent.bind(this);
 
-
   }
-
 
 
   playlistsContent() {
@@ -28,7 +26,6 @@ class Playlists extends React.Component {
 
         return <div key={playlist.id}>
           <Playlist playlist={playlist}
-                    // deletePlaylist={ this.props.deletePlaylist }
                     index={index}
                     {...this.props}
           />
@@ -73,7 +70,7 @@ class Playlists extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    createNewPlaylist(index){
+    createNewPlaylist(){
       return dispatch({
         type:'CREATE_NEW_PLAYLIST',
       })

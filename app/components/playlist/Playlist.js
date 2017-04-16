@@ -53,7 +53,7 @@ class Playlist extends React.Component {
                     onKeyUp={(e) => this.enterPressedInRename(e) }
       />
     } else {
-      return <h2 onClick={() => this.props.changeToEditmode(this.props.playlist)}>
+      return <h2 onClick={() => this.props.changeToEditMode(this.props.playlist)}>
         {this.props.playlist.title}
         <div className="playlist-length"><span className="length-num">{this.props.playlist.songs.length}</span></div>
       </h2>
@@ -95,6 +95,12 @@ class Playlist extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    changeToEditMode(playlistToEdit){
+      return dispatch({
+        type:'CHANGE_TO_EDIT_MODE',
+        playlistToEdit
+      })
+    },
     deletePlaylist(index){
       return dispatch({
         type:'DELETE_PLAYLIST',

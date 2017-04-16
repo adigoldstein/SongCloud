@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import store from '../../store'
 
 
-
 class song extends React.Component {
   constructor() {
     super();
@@ -18,11 +17,10 @@ class song extends React.Component {
   }
 
   createPlaylistAndNavToExplore() {
-    store.dispatch({type: 'CREATE_NEW_PLAYLIST', song: this.props.song});
+    this.props.createNewPlaylist(this.props.song);
 
     // Navigate to Playlists*******************************************
     // this.props.history.push('/playlists');
-
 
 
   }
@@ -108,7 +106,13 @@ function mapDispatchToProps(dispatch) {
     updateCurrentTrack(song){
       return dispatch({
         type: 'UPDATE_CURRENT_TRACK',
-        song: song
+        song
+      })
+    },
+    createNewPlaylist(song) {
+      return dispatch({
+        type: 'CREATE_NEW_PLAYLIST',
+        song
       })
     }
   }

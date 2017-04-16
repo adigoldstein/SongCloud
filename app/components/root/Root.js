@@ -17,109 +17,53 @@ export default class Root extends React.Component {
   constructor() {
 
     super();
-    this.createPlaylist = this.createPlaylist.bind(this);
 
-    this.updatePlaylistTitle = this.updatePlaylistTitle.bind(this);
-    this.changeToEditmode = this.changeToEditmode.bind(this);
 
-    this.state = {
-      currentSong: {},
-      playlists: [
-        {
-          id: 123,
-          isInEditMode: false,
-          title: 'Old Data1',
-          songs: [{
-            id: 250711755,
-            title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
-            duration: 219082,
-            stream_url: "https://api.soundcloud.com/tracks/250711755/stream",
-            uri: "https://api.soundcloud.com/tracks/250711755",
-            artwork_url: "https://i1.sndcdn.com/artworks-000150027827-4exjil-large.jpg"
-          }
 
-          ]
-        },
-        {
-          id: 456,
-          isInEditMode: false,
-          title: 'Old Data2',
-          songs: [{
-            id: 250711755,
-            title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
-            duration: 219082,
-            stream_url: "https://api.soundcloud.com/tracks/250711755/stream",
-            uri: "https://api.soundcloud.com/tracks/250711755",
-            artwork_url: "https://i1.sndcdn.com/artworks-000150027827-4exjil-large.jpg"
-          }
 
-          ]
-        }
-      ]
-    }
 
-  }
-
-  changeToEditmode(playlistToEdit) {
-    playlistToEdit.isInEditMode = true;
-    const newPlaylist = [];
-    this.state.playlists.map((playlist) => {
-      if (playlistToEdit.id === playlist.id) {
-        newPlaylist.push(playlistToEdit)
-      } else {
-        newPlaylist.push(playlist)
-      }
-    })
-    this.setState({playlists: newPlaylist})
-  }
-
-  updatePlaylistTitle(playlistObj, inputElem) {
-    const initTitle = playlistObj.title;
-    console.info(initTitle);
-    playlistObj.title = inputElem.value;
-    if (playlistObj.title === '' || playlistObj.title === ' ') {
-      playlistObj.title = initTitle;
-    }
-    playlistObj.isInEditMode = false;
-    let newPlaylist = [];
-    this.state.playlists.map((playlist) => {
-      if (playlist.id === playlistObj.id) {
-
-        newPlaylist.push(playlistObj);
-      } else {
-        newPlaylist.push(playlist);
-      }
-    })
-    this.setState({playlists: newPlaylist})
-
+    // this.state = {
+    //   currentSong: {},
+    //   playlists: [
+    //     {
+    //       id: 123,
+    //       isInEditMode: false,
+    //       title: 'Old Data1',
+    //       songs: [{
+    //         id: 250711755,
+    //         title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
+    //         duration: 219082,
+    //         stream_url: "https://api.soundcloud.com/tracks/250711755/stream",
+    //         uri: "https://api.soundcloud.com/tracks/250711755",
+    //         artwork_url: "https://i1.sndcdn.com/artworks-000150027827-4exjil-large.jpg"
+    //       }
+    //
+    //       ]
+    //     },
+    //     {
+    //       id: 456,
+    //       isInEditMode: false,
+    //       title: 'Old Data2',
+    //       songs: [{
+    //         id: 250711755,
+    //         title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
+    //         duration: 219082,
+    //         stream_url: "https://api.soundcloud.com/tracks/250711755/stream",
+    //         uri: "https://api.soundcloud.com/tracks/250711755",
+    //         artwork_url: "https://i1.sndcdn.com/artworks-000150027827-4exjil-large.jpg"
+    //       }
+    //
+    //       ]
+    //     }
+    //   ]
+    // }
 
   }
 
 
-  createPlaylist(song) {
-    const id = uuid();
-    const newPlaylist = {
-      id: id,
-      title: 'My New Playlist',
-      songs: [],
-      isInEditMode: true
-    };
 
-    const newState = this.state.playlists.slice();
-    newState.push(newPlaylist);
-    if (song) {
-      newPlaylist.songs.push(song)
-    }
 
-    this.setState({
-      playlists: newState
-    }, () => {
-      if (song) {
-        // Navigate to Playlists
-        this.props.history.push('/playlists');
-      }
-    });
-  }
+
 
 
 
@@ -132,17 +76,18 @@ export default class Root extends React.Component {
           <Route exact path="/" component={() =>
             <Redirect to="/explore"/>
           }/>
+
           <Route exact path="/explore" component={ () => <Redirect to="/explore/trance"/>
           }/>
+
           <Route path="/explore/:genre" render={ (props) => {
             return <Explore match={props.match}
-                            // playlists={this.state.playlists}
             />
           } }/>
+
           <Route path="/playlists" render={ () => {
-            return <Playlists updatePlaylistTitle={ this.updatePlaylistTitle }
-                              changeToEditmode={this.changeToEditmode }
-                              // playlists={ this.state.playlists}
+            return <Playlists changeToEditmode={this.changeToEditmode }
+
             />
           } }/>
         </Switch>

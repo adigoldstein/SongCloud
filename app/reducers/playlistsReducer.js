@@ -65,6 +65,21 @@ export default function PlaylistReducer(playlists = dummyData, action) {
 
     return newPlaylist
   }
+  if (action.type === 'CHANGE_TO_EDIT_MODE') {
+
+
+      action.playlistToEdit.isInEditMode = true;
+      const newPlaylist = [];
+      playlists.map((playlist) => {
+        if (action.playlistToEdit.id === playlist.id) {
+          newPlaylist.push(action.playlistToEdit)
+        } else {
+          newPlaylist.push(playlist)
+        }
+      })
+      return newPlaylist
+    }
+
 
   if (action.type === 'UPDATE_PLAYLIST_TITLE') {
     console.info(action);
@@ -90,10 +105,6 @@ export default function PlaylistReducer(playlists = dummyData, action) {
 
   return playlists;
 
-  // if (song) {
-  //   // Navigate to Playlists*******************************************
-  //   this.props.history.push('/playlists');
-  // }
 
 
 }
