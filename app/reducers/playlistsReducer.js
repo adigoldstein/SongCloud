@@ -34,7 +34,7 @@ const dummyData = [
 ];
 export default function PlaylistReducer(playlists = dummyData, action) {
   if (action.type === 'CREATE_NEW_PLAYLIST') {
-    console.info(action.song, action);
+    // console.info(action.song, action);
     let copyOfPlaylists = [...playlists];
     const id = uuid();
     const newPlaylist = {
@@ -48,20 +48,43 @@ export default function PlaylistReducer(playlists = dummyData, action) {
     }
 
     copyOfPlaylists.push(newPlaylist);
-    console.info(copyOfPlaylists, 'playlistdata after adding');
+    // console.info(copyOfPlaylists, 'playlistdata after adding');
 
 
     return copyOfPlaylists;
   }
 
   if (action.type === 'DELETE_PLAYLIST') {
-    console.info(action);
+    // console.info(playlists);
     let newPlaylist = [];
     for (const i in playlists) {
       if (parseInt(i) !== action.index) {
         newPlaylist.push(playlists[i])
       }
     }
+
+    return newPlaylist
+  }
+
+  if (action.type === 'UPDATE_PLAYLIST_TITLE') {
+    console.info(action);
+    const initTitle = action.playlistObj.title;
+    console.info(initTitle);
+    action.playlistObj.title = action.input.value;
+    if (action.playlistObj.title === '' || action.playlistObj.title === ' ') {
+      action.playlistObj.title = initTitle;
+    }
+    action.playlistObj.isInEditMode = false;
+    let newPlaylist = [];
+    playlists.map((playlist) => {
+      if (playlist.id === action.playlistObj.id) {
+
+        newPlaylist.push(action.playlistObj);
+      } else {
+        newPlaylist.push(playlist);
+      }
+    })
+    console.info(newPlaylist);
     return newPlaylist
   }
 

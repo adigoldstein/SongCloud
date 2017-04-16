@@ -28,7 +28,7 @@ class Playlists extends React.Component {
 
         return <div key={playlist.id}>
           <Playlist playlist={playlist}
-                    deletePlaylist={ this.props.deletePlaylist }
+                    // deletePlaylist={ this.props.deletePlaylist }
                     index={index}
                     {...this.props}
           />
@@ -47,7 +47,7 @@ class Playlists extends React.Component {
       <div className="playlists-container">
         <div className="playlists-left">
           <div className="button-container">
-            <button onClick={()=> store.dispatch({ type: 'CREATE_NEW_PLAYLIST'})} className="add-playlist-btn">Add new playlist</button>
+            <button onClick={()=> this.props.createNewPlaylist()} className="add-playlist-btn">Add new playlist</button>
           </div>
 
           <ul className="playlists-list">
@@ -71,10 +71,19 @@ class Playlists extends React.Component {
     )
   }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    createNewPlaylist(index){
+      return dispatch({
+        type:'CREATE_NEW_PLAYLIST',
+      })
+    }
+  }
+}
 function mapStateToProps(stateData) {
   return {
     playlists: stateData.Playlists
   }
 }
 
-export default connect(mapStateToProps)(Playlists);
+export default connect(mapStateToProps,mapDispatchToProps)(Playlists);

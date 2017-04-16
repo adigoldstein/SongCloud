@@ -20,7 +20,7 @@ class Playlist extends React.Component {
 
   enterPressedInRename(e) {
     if (e.key === 'Enter') {
-      this.props.updatePlaylistTitle(this.props.playlist, this.textInput);
+      this.props.updateTitle(this.props.playlist, this.textInput);
     }
   }
 
@@ -45,11 +45,11 @@ class Playlist extends React.Component {
     if (this.props.playlist.isInEditMode) {
       return <input type="text"
                     defaultValue={this.props.playlist.title}
-                    className="nename-playlist-input"
+                    className="name-playlist-input"
                     ref={(input) => {
                       this.textInput = input;
                     }}
-                    onBlur={() => this.props.updatePlaylistTitle(this.props.playlist, this.textInput)}
+                    onBlur={() => this.props.updateTitle(this.props.playlist, this.textInput)}
                     onKeyUp={(e) => this.enterPressedInRename(e) }
       />
     } else {
@@ -69,7 +69,7 @@ class Playlist extends React.Component {
       <div key={this.props.playlist.id} className="each-playlist-container">
         <div className="playlists-bar">
           {this.toggleRename()}
-          <button onClick={()=>this.props.updateCurrentTrack(this.props.index)} className="delete-btn">delete</button>
+          <button onClick={()=>this.props.deletePlaylist(this.props.index)} className="delete-btn">delete</button>
         </div>
         <div className="songs-display">
           <ul className="songs-ul">
@@ -95,12 +95,20 @@ class Playlist extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    updateCurrentTrack(index){
+    deletePlaylist(index){
       return dispatch({
         type:'DELETE_PLAYLIST',
         index: index
       })
+    },
+    updateTitle(playlistObj,input){
+      return dispatch({
+        type:'UPDATE_PLAYLIST_TITLE',
+        playlistObj,
+        input
+      })
     }
+
   }
 }
 function mapStateToProps(stateData) {
