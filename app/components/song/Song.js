@@ -8,19 +8,42 @@ import store from '../../store'
 class song extends React.Component {
   constructor() {
     super();
+    this.isSongInPlaylist = this.isSongInPlaylist.bind(this);
     this.createPlaylistAndNavToExplore = this.createPlaylistAndNavToExplore.bind(this);
+    this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
 
     this.state = {
-      dropdownIsShown: false
+      dropdownIsShown: false,
     }
 
   }
 
+  checkboxChangeHandler(ev) {
+    const chechbox = ev.target;
+
+    console.info(chechbox.checked);
+    chechbox.checked? console.info('yessss') : console.info('nooooooooo');
+
+  }
+
+  isSongInPlaylist(playlist) {
+    // console.info(playlist.songs);
+
+    for (const song of playlist.songs) {
+      // console.info(song.id, this.props.song.id);
+      if (song.id === this.props.song.id) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+
   createPlaylistAndNavToExplore() {
     this.props.createNewPlaylist(this.props.song);
-
-    // Navigate to Playlists*******************************************
-    // this.props.history.push('/playlists');
+    // Navigate to Playlists*
+    this.props.history.push('/playlists');
 
 
   }
@@ -31,10 +54,9 @@ class song extends React.Component {
         {this.playlistElemChooser()}
 
         {this.props.playlists.map((playlist) => {
-          {/*console.info(playlist);*/
-          }
+
           return <label key={playlist.id}>
-            <input type="checkbox"/>
+            <input type="checkbox" checked={ this.isSongInPlaylist(playlist)} onChange={ this.checkboxChangeHandler}/>
             {playlist.title}
           </label>
         })
@@ -68,7 +90,6 @@ class song extends React.Component {
 
 
   render() {
-
     const minutes = Math.floor(parseInt(this.props.song.duration) / 60000);
     const seconds = ((parseInt(this.props.song.duration % 60000) / 1000).toFixed(0));
     const songDuration = (seconds === 60 ? (minutes + 1) + ":00" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
