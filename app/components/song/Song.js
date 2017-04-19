@@ -18,12 +18,13 @@ class song extends React.Component {
 
   }
 
-  checkboxChangeHandler(ev) {
+  checkboxChangeHandler(ev,playlist) {
     const chechbox = ev.target;
 
-    console.info(chechbox.checked);
-    chechbox.checked? console.info('yessss') : console.info('nooooooooo');
-
+    console.info(this.props.song , 'song');
+    console.info(playlist, 'playlist');
+    console.info( chechbox.checked, 'bool');
+    this.props.addOrRemoveSongFromPlaylist(this.props.song,playlist ,chechbox.checked )
   }
 
   isSongInPlaylist(playlist) {
@@ -56,7 +57,7 @@ class song extends React.Component {
         {this.props.playlists.map((playlist) => {
 
           return <label key={playlist.id}>
-            <input type="checkbox" checked={ this.isSongInPlaylist(playlist)} onChange={ this.checkboxChangeHandler}/>
+            <input type="checkbox" checked={ this.isSongInPlaylist(playlist)} onChange={(ev)=> this.checkboxChangeHandler(ev, playlist)}/>
             {playlist.title}
           </label>
         })
@@ -134,6 +135,14 @@ function mapDispatchToProps(dispatch) {
       return dispatch({
         type: 'CREATE_NEW_PLAYLIST',
         song
+      })
+    },
+    addOrRemoveSongFromPlaylist(song,playlist,addSong) {
+      return dispatch({
+        type: 'ADD_REMOVE_SONG_FROM_PLAYLIST',
+        song,
+        playlist,
+        addSong
       })
     }
   }

@@ -68,17 +68,17 @@ export default function PlaylistReducer(playlists = dummyData, action) {
   if (action.type === 'CHANGE_TO_EDIT_MODE') {
 
 
-      action.playlistToEdit.isInEditMode = true;
-      const newPlaylist = [];
-      playlists.map((playlist) => {
-        if (action.playlistToEdit.id === playlist.id) {
-          newPlaylist.push(action.playlistToEdit)
-        } else {
-          newPlaylist.push(playlist)
-        }
-      })
-      return newPlaylist
-    }
+    action.playlistToEdit.isInEditMode = true;
+    const newPlaylist = [];
+    playlists.map((playlist) => {
+      if (action.playlistToEdit.id === playlist.id) {
+        newPlaylist.push(action.playlistToEdit)
+      } else {
+        newPlaylist.push(playlist)
+      }
+    })
+    return newPlaylist
+  }
 
 
   if (action.type === 'UPDATE_PLAYLIST_TITLE') {
@@ -102,9 +102,33 @@ export default function PlaylistReducer(playlists = dummyData, action) {
     console.info(newPlaylist);
     return newPlaylist
   }
+  if (action.type === 'ADD_REMOVE_SONG_FROM_PLAYLIST') {
+
+    let copyOfPlaylists = [];
+    playlists.map((playlist) => {
+      if (playlist.id === action.playlist.id) {
+
+        if (action.addSong) {
+          //  Checkbox checked, need to add song
+          playlist.songs.push(action.song);
+          copyOfPlaylists.push(playlist);
+
+
+        } else {
+          //Remove song from playlist
+        // ***********************************
+        }
+      } else {
+        copyOfPlaylists.push(playlist);
+      }
+
+
+    })
+
+    return copyOfPlaylists
+  }
 
   return playlists;
-
 
 
 }
