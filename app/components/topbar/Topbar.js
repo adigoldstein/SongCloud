@@ -1,10 +1,18 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 
 import './topbar.scss';
 export default class Topbar extends React.Component {
   constructor() {
     super();
+  }
+  inputChangeHandler(e) {
+    if (e.key === 'Enter' && this.textInput.value !== '' ) {
+      console.info(this.textInput.value);
+
+      this.props.history.push(`/explore/${this.textInput.value}?search=true`);
+    }
+
   }
 
   render() {
@@ -24,7 +32,12 @@ export default class Topbar extends React.Component {
           <div className="input-container">
             <i className="search-icon fa fa-search" aria-hidden="true"></i>
 
-            <input className="search-input" type="text" placeholder="SEARCH"/>
+            <input className="search-input"
+                   type="text"
+                   placeholder="SEARCH"
+                   ref={(input) => {
+                     this.textInput = input;}}
+                   onKeyUp={(e) => {this.inputChangeHandler(e)}}/>
           </div>
           <button className="sign-out-btn"><a href="#">Logout</a></button>
         </div>

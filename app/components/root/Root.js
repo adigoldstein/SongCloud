@@ -27,7 +27,7 @@ export default class Root extends React.Component {
 
     return (
       <div className="main-root">
-        <Topbar/>
+        <Topbar history={this.props.history} />
         <Switch>
           <Route exact path="/" component={() =>
             <Redirect to="/explore"/>

@@ -2,7 +2,6 @@ import React from 'react';
 
 import './song.scss';
 import {connect} from 'react-redux';
-import store from '../../store'
 
 
 class song extends React.Component {
@@ -21,32 +20,50 @@ class song extends React.Component {
   checkboxChangeHandler(ev,playlist) {
     const chechbox = ev.target;
 
-    console.info(this.props.song , 'song');
-    console.info(playlist, 'playlist');
-    console.info( chechbox.checked, 'bool');
     this.props.addOrRemoveSongFromPlaylist(this.props.song,playlist ,chechbox.checked )
   }
 
   isSongInPlaylist(playlist) {
-    // console.info(playlist.songs);
 
     for (const song of playlist.songs) {
-      // console.info(song.id, this.props.song.id);
       if (song.id === this.props.song.id) {
         return true
+
       }
     }
 
     return false
   }
+  isSongInAnyPlaylist() {
+
+    for (const playlist of this.props.playlists) {
+      for (const song of playlist.songs) {
+        if (song.id === this.props.song.id) {
+          console.info('Should be true');
+          return true;
+        }
+      }
+    };
+    return false;
+  }
 
 
   createPlaylistAndNavToExplore() {
     this.props.createNewPlaylist(this.props.song);
-    // Navigate to Playlists*
+    // Navigate to Playlists:
     this.props.history.push('/playlists');
 
 
+  }
+
+  heartIconDisplay() {
+    console.info(this.isSongInAnyPlaylist());
+    if (this.isSongInAnyPlaylist()) {
+      return <i className="heart-icon-full fa fa-heart" aria-hidden="true"> </i>
+
+    }else {
+      return <i className="heart-icon fa fa-heart-o" aria-hidden="true"> </i>
+    }
   }
 
   dropDownElem() {
@@ -105,13 +122,12 @@ class song extends React.Component {
         <div>
           <img onClick={() => this.props.updateCurrentTrack(this.props.song)} src={artWork.replace('large', 't300x300')}
                alt="Song photo" className="song-img"/>
-          {/*<div style={{ backgroundImage: `url (" value.artwork_url.replace('large', 't300x300') ")` }}></div>*/}
           <div className="song-title">{this.props.song.title}</div>
           <div className="song-duration">
             <i className="duration-icon fa fa-clock-o" aria-hidden="true"> </i>
             {songDuration}
-            <div className="heart-container">
-              <i onClick={() => this.toggleDisplay() } className="heart-icon fa fa-heart-o" aria-hidden="true"> </i>
+            <div className="heart-container" onClick={() => this.toggleDisplay() }>
+              {this.heartIconDisplay()}
               {this.dropDownElem()}
 
             </div>

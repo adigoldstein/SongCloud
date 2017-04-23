@@ -19,11 +19,26 @@ export default class Explore extends React.Component {
 
   GetXhr() {
 
-    const genre = this.props.match.params.genre;
+
+    const searchPath = this.props.history.location.pathname;
+    console.info(searchPath);
+    const searchstring = searchPath.replace('/explore/','');
+    console.info(searchstring);
+    let beforeSearch;
+    let genre;
+    if (this.props.history.location.search === "") {
+       beforeSearch = 'tags';
+      genre = this.props.match.params.genre;
+    }else {
+       beforeSearch = 'q';
+       genre = searchstring;
+    }
+    console.info(beforeSearch);
+
 
     const xhr = new XMLHttpRequest();
 
-    xhr.open('GET', `https://api.soundcloud.com/tracks?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z&limit=${this.state.limit}&offset=${this.state.offset}&tags=${genre}`);
+    xhr.open('GET', `https://api.soundcloud.com/tracks?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z&limit=${this.state.limit}&offset=${this.state.offset}&${beforeSearch}=${genre}`);
 
     xhr.addEventListener('load', () => {
       this.setState({songs: JSON.parse(xhr.responseText), songsLoading: 'loaded'});
@@ -90,7 +105,7 @@ export default class Explore extends React.Component {
     switch (this.state.songsLoading) {
       case 'loading':
         return <div className="explore-loading-container">
-          <i className="explore-loading fa fa-refresh fa-spin fa-3x fa-fw"></i>
+          <i className="explore-loading fa fa-refresh fast-spin fa-3x fa-fw"></i>
         </div>;
       case 'error':
         return <div className="error">Error!</div>;

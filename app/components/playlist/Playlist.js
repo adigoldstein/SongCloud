@@ -69,7 +69,7 @@ class Playlist extends React.Component {
       <div key={this.props.playlist.id} className="each-playlist-container">
         <div className="playlists-bar">
           {this.toggleRename()}
-          <button onClick={()=>this.props.deletePlaylist(this.props.index)} className="delete-btn">delete</button>
+          <button onClick={()=>this.props.deletePlaylist(this.props.index)} className="delete-btn">Delete</button>
         </div>
         <div className="songs-display">
           <ul className="songs-ul">
@@ -124,3 +124,4 @@ function mapStateToProps(stateData) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Playlist);
+

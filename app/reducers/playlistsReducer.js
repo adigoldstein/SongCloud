@@ -3,7 +3,7 @@ const dummyData = [
   {
     id: 123,
     isInEditMode: false,
-    title: 'Redux My Songs',
+    title: 'My Songs',
     songs: [{
       id: 250711755,
       title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -18,7 +18,7 @@ const dummyData = [
   {
     id: 456,
     isInEditMode: false,
-    title: 'Redux Party Time',
+    title: 'Party Time',
     songs: [{
       id: 250711755,
       title: "The Chainsmokers - Don't Let Me Down (Illenium Remix)",
@@ -34,7 +34,7 @@ const dummyData = [
 ];
 export default function PlaylistReducer(playlists = dummyData, action) {
   if (action.type === 'CREATE_NEW_PLAYLIST') {
-    // console.info(action.song, action);
+
     let copyOfPlaylists = [...playlists];
     const id = uuid();
     const newPlaylist = {
@@ -48,14 +48,14 @@ export default function PlaylistReducer(playlists = dummyData, action) {
     }
 
     copyOfPlaylists.push(newPlaylist);
-    // console.info(copyOfPlaylists, 'playlistdata after adding');
+
 
 
     return copyOfPlaylists;
   }
 
   if (action.type === 'DELETE_PLAYLIST') {
-    // console.info(playlists);
+
     let newPlaylist = [];
     for (const i in playlists) {
       if (parseInt(i) !== action.index) {
@@ -66,7 +66,6 @@ export default function PlaylistReducer(playlists = dummyData, action) {
     return newPlaylist
   }
   if (action.type === 'CHANGE_TO_EDIT_MODE') {
-
 
     action.playlistToEdit.isInEditMode = true;
     const newPlaylist = [];
@@ -82,7 +81,8 @@ export default function PlaylistReducer(playlists = dummyData, action) {
 
 
   if (action.type === 'UPDATE_PLAYLIST_TITLE') {
-    console.info(action);
+
+
     const initTitle = action.playlistObj.title;
     console.info(initTitle);
     action.playlistObj.title = action.input.value;
@@ -99,13 +99,13 @@ export default function PlaylistReducer(playlists = dummyData, action) {
         newPlaylist.push(playlist);
       }
     })
-    console.info(newPlaylist);
     return newPlaylist
   }
   if (action.type === 'ADD_REMOVE_SONG_FROM_PLAYLIST') {
 
     let copyOfPlaylists = [];
     playlists.map((playlist) => {
+
       if (playlist.id === action.playlist.id) {
 
         if (action.addSong) {
@@ -116,7 +116,12 @@ export default function PlaylistReducer(playlists = dummyData, action) {
 
         } else {
           //Remove song from playlist
-        // ***********************************
+          const index = playlist.songs.findIndex((element)=> (element.id === action.song.id));
+
+          playlist.songs.splice(index,1);
+          console.info(playlist);
+          copyOfPlaylists.push(playlist);
+
         }
       } else {
         copyOfPlaylists.push(playlist);
