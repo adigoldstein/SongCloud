@@ -14,14 +14,28 @@
 .playlists-bar h2 {
   font-size: 22px;
   margin-left: 20px;
+  position: relative;
 }
 .playlists-bar .playlist-length {
   display: inline-block;
   background-color: $blue;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin-left: 10px;
+}
+
+.playlist-length {
+  position: absolute;
+  left: 100%;
+  bottom: 3px;
+}
+.length-num {
+  position: absolute;
+  top: 8px;
+  left: 11px;
+  font-size: 18px;
+
 }
 
 .name-playlist-input:focus {

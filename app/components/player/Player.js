@@ -20,6 +20,7 @@ function Player(props) {
         <audio className="audio-elem"
                controls={true}
                src={ urlSong }
+
                autoPlay>
 
         </audio>
