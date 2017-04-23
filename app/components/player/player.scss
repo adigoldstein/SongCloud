@@ -10,6 +10,8 @@
   background-color: #FBFBFB;
   display: flex;
   align-items: center;
+  animation-duration: 0.7s;
+  animation-name: slidein;
 }
 
 .player-img {
@@ -18,8 +20,16 @@
   margin-left: 30px;
 
 }
-.Shifted {
-  transform: translateY(60px);
+@keyframes slidein {
+  from {
+    transform: translateY(60px);
+
+  }
+
+to {
+  transform: translateY(0px);
+
+  }
 }
 
 .song-name-player {

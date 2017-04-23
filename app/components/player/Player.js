@@ -1,30 +1,31 @@
 import './player.scss';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import store from '../../store'
 function Player(props) {
 
-  const storeData =  store.getState();
+  const storeData = store.getState();
   // console.info(storeData);
 
+
   if (!storeData.currentTrack) {
-    return <div className="player Shifted"></div>
+
+    return null
   }
 
-  const urlSong = `${props.currentTrack.stream_url}?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z`;
+
   return (
-      <footer className="player">
-        <img className="player-img" src={ props.currentTrack.artwork_url } alt="Song thumbnail"/>
-        <span className="song-name-player">{props.currentTrack.title}</span>
-        <audio className="audio-elem"
-               controls={true}
-               src={ urlSong }
+    <footer className="player">
+      <img className="player-img" src={  props.currentTrack.artwork_url } alt="Song thumbnail"/>
+      <span className="song-name-player">{ props.currentTrack.title}</span>
+      <audio className="audio-elem"
+             controls={true}
+             src={ `${props.currentTrack.stream_url}?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z` }
+             autoPlay>
 
-               autoPlay>
-
-        </audio>
-      </footer>
+      </audio>
+    </footer>
 
   )
 }
