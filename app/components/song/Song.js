@@ -39,7 +39,6 @@ class song extends React.Component {
     for (const playlist of this.props.playlists) {
       for (const song of playlist.songs) {
         if (song.id === this.props.song.id) {
-          console.info('Should be true');
           return true;
         }
       }
@@ -57,7 +56,6 @@ class song extends React.Component {
   }
 
   heartIconDisplay() {
-    console.info(this.isSongInAnyPlaylist());
     if (this.isSongInAnyPlaylist()) {
       return <i className="heart-icon-full fa fa-heart" aria-hidden="true"> </i>
 

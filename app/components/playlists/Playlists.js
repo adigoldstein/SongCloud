@@ -9,7 +9,6 @@ import store from '../../store'
 import './playlists.scss';
 
 class Playlists extends React.Component {
-  // console.info(props.data);
   constructor() {
     super();
 
@@ -21,7 +20,6 @@ class Playlists extends React.Component {
 
   playlistsContent() {
     const storeData =  store.getState()
-    console.info(storeData);
     if (storeData.Playlists.length) {
       return storeData.Playlists.map((playlist, index) => {
 
@@ -52,10 +50,7 @@ class Playlists extends React.Component {
 
 
             {this.props.playlists.map((playlist) => {
-              {/*console.info(playlist);*/
-              }
               return <li key={playlist.id} className="my-playlist">{playlist.title}</li>
-
             })}
 
           </ul>

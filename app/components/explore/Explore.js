@@ -21,9 +21,7 @@ export default class Explore extends React.Component {
 
 
     const searchPath = this.props.history.location.pathname;
-    console.info(searchPath);
     const searchstring = searchPath.replace('/explore/','');
-    console.info(searchstring);
     let beforeSearch;
     let genre;
     if (this.props.history.location.search === "") {
@@ -33,7 +31,7 @@ export default class Explore extends React.Component {
        beforeSearch = 'q';
        genre = searchstring;
     }
-    console.info(beforeSearch);
+
 
 
     const xhr = new XMLHttpRequest();
@@ -100,7 +98,6 @@ export default class Explore extends React.Component {
   }
 
   render() {
-    // console.info(this.props);
 
     switch (this.state.songsLoading) {
       case 'loading':

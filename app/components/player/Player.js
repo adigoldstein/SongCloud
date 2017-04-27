@@ -6,7 +6,6 @@ import store from '../../store'
 function Player(props) {
 
   const storeData = store.getState();
-  // console.info(storeData);
 
 
   if (!storeData.currentTrack) {

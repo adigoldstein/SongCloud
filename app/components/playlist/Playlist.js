@@ -74,9 +74,6 @@ class Playlist extends React.Component {
         <div className="songs-display">
           <ul className="songs-ul">
             {this.props.playlist.songs.map((song) => {
-                {/*console.info(song);*/
-                }
-
                 return <Song key={song.id}
                              song={song}
                              mode={'playlists'}
