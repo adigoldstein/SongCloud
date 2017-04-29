@@ -12,6 +12,9 @@
   font-size: 15px;
   margin: 0 15px;
 }
+.genres-bar a:link, .genres-bar a:visited {
+  text-decoration: none;
+}
 
 .categories-menu {
   list-style: none;
@@ -32,7 +35,7 @@
 
 .explore-loading-container {
   display: flex;
-  //align-items: center;
+
 }
 
 .explore-loading {

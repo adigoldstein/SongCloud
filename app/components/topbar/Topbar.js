@@ -5,7 +5,9 @@ import './topbar.scss';
 export default class Topbar extends React.Component {
   constructor() {
     super();
+    this.clearPlaceholder = this.clearPlaceholder.bind(this);
   }
+
 
   searchClickHandler() {
     if (this.textInput.value !== '') {
@@ -21,6 +23,10 @@ export default class Topbar extends React.Component {
       this.props.history.push(`/explore/${this.textInput.value}?search=true`);
       this.textInput.value = '';
     }
+  }
+
+  clearPlaceholder() {
+    this.textInput.placeholder = '';
   }
 
   render() {
@@ -40,13 +46,15 @@ export default class Topbar extends React.Component {
           <div className="input-container">
             <i className="search-icon fa fa-search" aria-hidden="true" onClick={() => {
               this.searchClickHandler()
-            }}></i>
+            }}
+            ></i>
             <input className="search-input"
                    type="text"
                    placeholder="SEARCH"
                    ref={(input) => {
                      this.textInput = input;
                    }}
+                   onFocus={ ()=> this.clearPlaceholder()}
                    onKeyUp={(e) => {
                      this.inputChangeHandler(e)
                    }}/>
