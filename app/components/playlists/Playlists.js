@@ -1,9 +1,7 @@
 import React from 'react';
 import Playlist from '../playlist/Playlist';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import store from '../../store'
-
-
 
 
 import './playlists.scss';
@@ -19,10 +17,11 @@ class Playlists extends React.Component {
 
 
   playlistsContent() {
-    const storeData =  store.getState()
+
+    const storeData = store.getState();
+
     if (storeData.Playlists.length) {
       return storeData.Playlists.map((playlist, index) => {
-
         return <div key={playlist.id}>
           <Playlist playlist={playlist}
                     index={index}
@@ -38,16 +37,15 @@ class Playlists extends React.Component {
 
   render() {
 
-
     return (
       <div className="playlists-container">
         <div className="playlists-left">
           <div className="button-container">
-            <button onClick={()=> this.props.createNewPlaylist()} className="add-playlist-btn">Add new playlist</button>
+            <button onClick={() => this.props.createNewPlaylist()} className="add-playlist-btn">Add new playlist
+            </button>
           </div>
 
           <ul className="playlists-list">
-
 
             {this.props.playlists.map((playlist) => {
               return <li key={playlist.id} className="my-playlist">{playlist.title}</li>
@@ -68,15 +66,16 @@ function mapDispatchToProps(dispatch) {
   return {
     createNewPlaylist(){
       return dispatch({
-        type:'CREATE_NEW_PLAYLIST',
+        type: 'CREATE_NEW_PLAYLIST',
       })
     }
   }
 }
+
 function mapStateToProps(stateData) {
   return {
     playlists: stateData.Playlists
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Playlists);
+export default connect(mapStateToProps, mapDispatchToProps)(Playlists);

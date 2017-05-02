@@ -1,6 +1,5 @@
 @import 'assets/styles/colors';
 
-
 .player {
   position: fixed;
   bottom: 0;
@@ -20,14 +19,15 @@
   margin-left: 30px;
 
 }
+
 @keyframes slidein {
   from {
     transform: translateY(60px);
 
   }
 
-to {
-  transform: translateY(0px);
+  to {
+    transform: translateY(0px);
 
   }
 }
@@ -40,5 +40,4 @@ to {
 
 .audio-elem {
   margin: 0 auto;
-
 }

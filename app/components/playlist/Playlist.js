@@ -1,8 +1,7 @@
 import React from 'react';
 import Song from '../song/Song';
 import store from '../../store';
-import { connect } from 'react-redux';
-
+import {connect} from 'react-redux';
 
 
 import './playlist.scss';
@@ -11,11 +10,10 @@ import './playlist.scss';
 class Playlist extends React.Component {
   constructor() {
     super();
+
     this.toggleRename = this.toggleRename.bind(this);
     this.focus = this.focus.bind(this);
 
-
-    this.state = {}
   }
 
   enterPressedInRename(e) {
@@ -69,7 +67,7 @@ class Playlist extends React.Component {
       <div key={this.props.playlist.id} className="each-playlist-container">
         <div className="playlists-bar">
           {this.toggleRename()}
-          <button onClick={()=>this.props.deletePlaylist(this.props.index)} className="delete-btn">Delete</button>
+          <button onClick={() => this.props.deletePlaylist(this.props.index)} className="delete-btn">Delete</button>
         </div>
         <div className="songs-display">
           <ul className="songs-ul">
@@ -94,19 +92,19 @@ function mapDispatchToProps(dispatch) {
   return {
     changeToEditMode(playlistToEdit){
       return dispatch({
-        type:'CHANGE_TO_EDIT_MODE',
+        type: 'CHANGE_TO_EDIT_MODE',
         playlistToEdit
       })
     },
     deletePlaylist(index){
       return dispatch({
-        type:'DELETE_PLAYLIST',
+        type: 'DELETE_PLAYLIST',
         index: index
       })
     },
-    updateTitle(playlistObj,input){
+    updateTitle(playlistObj, input){
       return dispatch({
-        type:'UPDATE_PLAYLIST_TITLE',
+        type: 'UPDATE_PLAYLIST_TITLE',
         playlistObj,
         input
       })
@@ -120,5 +118,5 @@ function mapStateToProps(stateData) {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Playlist);
+export default connect(mapStateToProps, mapDispatchToProps)(Playlist);
 

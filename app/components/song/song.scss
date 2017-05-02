@@ -1,7 +1,6 @@
 @import 'assets/styles/colors';
 
 .songs-li {
-
   width: 200px;
   height: 140px;
   border: 1px solid #D8D8D8;
@@ -18,7 +17,6 @@
 .song-title, .song-duration {
   font-size: 11px;
   margin-top: 5px;
-
 }
 
 .duration-icon {
@@ -31,17 +29,18 @@
 }
 
 .heart-icon {
-
   margin-top: 3px;
   font-size: 14px;
   color: #D8D8D8;
 
 }
+
 .heart-icon-full {
   margin-top: 3px;
   font-size: 14px;
   color: $blue;
 }
+
 .heart-icon:hover {
   color: #9B9B9B;
 }

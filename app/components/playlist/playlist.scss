@@ -16,6 +16,7 @@
   margin-left: 20px;
   position: relative;
 }
+
 .playlists-bar .playlist-length {
   display: inline-block;
   background-color: $blue;
@@ -30,26 +31,27 @@
   left: 100%;
   bottom: 3px;
 }
+
 .length-num {
   position: absolute;
   top: 8px;
   left: 11px;
   font-size: 18px;
-
 }
 
 .name-playlist-input:focus {
-outline: none;
+  outline: none;
   border: none;
   font-size: 18px;
   margin-left: 15px;
 }
+
 .playlists-bar .delete-btn {
   background-color: #fff;
   border: none;
   margin-right: 20px;
   color: red;
-  font-weight:bold;
+  font-weight: bold;
   font-size: 16px;
 }
 

@@ -12,8 +12,11 @@
   font-size: 15px;
   margin: 0 15px;
 }
+
 .genres-bar a:link, .genres-bar a:visited {
   text-decoration: none;
+  color: black;
+  font-weight: 500;
 }
 
 .categories-menu {
@@ -21,11 +24,9 @@
   display: flex;
   margin: 0;
   padding: 0;
-
 }
 
 .genre {
-
   margin-left: 20px;
 }
 
@@ -35,7 +36,6 @@
 
 .explore-loading-container {
   display: flex;
-
 }
 
 .explore-loading {
@@ -57,7 +57,6 @@
   justify-content: flex-start;
 }
 
-
 .pagination {
   display: flex;
   justify-content: center;
@@ -71,46 +70,6 @@
   background-color: $blue;
 }
 
-/* Ripple magic */
-.pagination button {
-  position: relative;
-  overflow: hidden;
-}
-
-.pagination button:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  background: rgba(255, 255, 255, .5);
-  opacity: 0;
-  border-radius: 100%;
-  transform: scale(1, 1) translate(-50%);
-  transform-origin: 50% 50%;
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0, 0);
-    opacity: 1;
-  }
-  20% {
-    transform: scale(25, 25);
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(40, 40);
-  }
-}
-
-.pagination button:focus:not(:active)::after {
-  animation: ripple 1s ease-out;
-}
-
-//****************************
 .pagination-div {
   width: 200px;
   display: flex;

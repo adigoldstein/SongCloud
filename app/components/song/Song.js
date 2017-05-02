@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 class song extends React.Component {
   constructor() {
     super();
+
     this.isSongInPlaylist = this.isSongInPlaylist.bind(this);
     this.createPlaylistAndNavToExplore = this.createPlaylistAndNavToExplore.bind(this);
     this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
@@ -14,13 +15,12 @@ class song extends React.Component {
     this.state = {
       dropdownIsShown: false,
     }
-
   }
 
-  checkboxChangeHandler(ev,playlist) {
+  checkboxChangeHandler(ev, playlist) {
     const chechbox = ev.target;
 
-    this.props.addOrRemoveSongFromPlaylist(this.props.song,playlist ,chechbox.checked )
+    this.props.addOrRemoveSongFromPlaylist(this.props.song, playlist, chechbox.checked)
   }
 
   isSongInPlaylist(playlist) {
@@ -28,12 +28,12 @@ class song extends React.Component {
     for (const song of playlist.songs) {
       if (song.id === this.props.song.id) {
         return true
-
       }
     }
 
     return false
   }
+
   isSongInAnyPlaylist() {
 
     for (const playlist of this.props.playlists) {
@@ -42,7 +42,7 @@ class song extends React.Component {
           return true;
         }
       }
-    };
+    }
     return false;
   }
 
@@ -51,15 +51,13 @@ class song extends React.Component {
     this.props.createNewPlaylist(this.props.song);
     // Navigate to Playlists:
     this.props.history.push('/playlists');
-
-
   }
 
   heartIconDisplay() {
     if (this.isSongInAnyPlaylist()) {
       return <i className="heart-icon-full fa fa-heart" aria-hidden="true"> </i>
 
-    }else {
+    } else {
       return <i className="heart-icon fa fa-heart-o" aria-hidden="true"> </i>
     }
   }
@@ -72,7 +70,8 @@ class song extends React.Component {
         {this.props.playlists.map((playlist) => {
 
           return <label key={playlist.id}>
-            <input type="checkbox" checked={ this.isSongInPlaylist(playlist)} onChange={(ev)=> this.checkboxChangeHandler(ev, playlist)}/>
+            <input type="checkbox" checked={ this.isSongInPlaylist(playlist)}
+                   onChange={(ev) => this.checkboxChangeHandler(ev, playlist)}/>
             {playlist.title}
           </label>
         })
@@ -82,11 +81,9 @@ class song extends React.Component {
       </div>
   }
 
-
   toggleDisplay() {
     this.setState({dropdownIsShown: !this.state.dropdownIsShown})
   }
-
 
   playlistElemChooser() {
 
@@ -151,7 +148,7 @@ function mapDispatchToProps(dispatch) {
         song
       })
     },
-    addOrRemoveSongFromPlaylist(song,playlist,addSong) {
+    addOrRemoveSongFromPlaylist(song, playlist, addSong) {
       return dispatch({
         type: 'ADD_REMOVE_SONG_FROM_PLAYLIST',
         song,

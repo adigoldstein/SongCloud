@@ -84,7 +84,6 @@ export default function PlaylistReducer(playlists = dummyData, action) {
 
 
     const initTitle = action.playlistObj.title;
-    console.info(initTitle);
     action.playlistObj.title = action.input.value;
     if (action.playlistObj.title === '' || action.playlistObj.title === ' ') {
       action.playlistObj.title = initTitle;
@@ -119,7 +118,6 @@ export default function PlaylistReducer(playlists = dummyData, action) {
           const index = playlist.songs.findIndex((element)=> (element.id === action.song.id));
 
           playlist.songs.splice(index,1);
-          console.info(playlist);
           copyOfPlaylists.push(playlist);
 
         }

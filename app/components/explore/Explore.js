@@ -21,17 +21,16 @@ export default class Explore extends React.Component {
 
 
     const searchPath = this.props.history.location.pathname;
-    const searchstring = searchPath.replace('/explore/','');
+    const searchString = searchPath.replace('/explore/', '');
     let beforeSearch;
     let genre;
     if (this.props.history.location.search === "") {
-       beforeSearch = 'tags';
+      beforeSearch = 'tags';
       genre = this.props.match.params.genre;
-    }else {
-       beforeSearch = 'q';
-       genre = searchstring;
+    } else {
+      beforeSearch = 'q';
+      genre = searchString;
     }
-
 
 
     const xhr = new XMLHttpRequest();
@@ -55,12 +54,12 @@ export default class Explore extends React.Component {
 
     //if genre changed
     if (prevProps.match.params.genre !== this.props.match.params.genre) {
-      this.setState({offset: 0 , songsLoading: 'loading'}, () => {
+      this.setState({offset: 0, songsLoading: 'loading'}, () => {
         this.GetXhr();
       });
     }
 
-    //if next page of prev page clicked
+    //if next page or prev page clicked
     if (prevState.offset !== this.state.offset) {
       this.GetXhr();
     }
@@ -69,14 +68,14 @@ export default class Explore extends React.Component {
 
   nextPage() {
     this.setState(
-      {offset: this.state.offset + this.state.limit , songsLoading: 'loading'}
+      {offset: this.state.offset + this.state.limit, songsLoading: 'loading'}
     )
 
   }
 
   prevPage() {
     this.setState(
-      {offset: this.state.offset - this.state.limit , songsLoading: 'loading'}
+      {offset: this.state.offset - this.state.limit, songsLoading: 'loading'}
     )
   }
 
@@ -112,13 +111,19 @@ export default class Explore extends React.Component {
             <div className="genres-bar">
               <h2>Genres: </h2>
               <ul className="categories-menu">
-                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/trance"} >Trance</NavLink></li>
-                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/dubstep"}>Dubstep</NavLink></li>
-                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/house"}>House</NavLink></li>
-                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/techno"}>Techno</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/trance"}>Trance</NavLink>
+                </li>
+                <li className="genre"><NavLink activeClassName="genre-selected"
+                                               to={"/explore/dubstep"}>Dubstep</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/house"}>House</NavLink>
+                </li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/techno"}>Techno</NavLink>
+                </li>
                 <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/pop"}>Pop</NavLink></li>
-                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/indie"}>Indie</NavLink></li>
-                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/reggaeton"}>Reggaeton</NavLink></li>
+                <li className="genre"><NavLink activeClassName="genre-selected" to={"/explore/indie"}>Indie</NavLink>
+                </li>
+                <li className="genre"><NavLink activeClassName="genre-selected"
+                                               to={"/explore/reggaeton"}>Reggaeton</NavLink></li>
               </ul>
             </div>
 

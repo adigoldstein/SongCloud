@@ -7,12 +7,10 @@ function Player(props) {
 
   const storeData = store.getState();
 
-
   if (!storeData.currentTrack) {
 
     return null
   }
-
 
   return (
     <footer className="player">
@@ -36,5 +34,5 @@ function mapStateToProps(stateData) {
 
 export default connect(mapStateToProps)(Player);
 
-// soundcloud personal id:
+// My soundcloud personal id:
 // 2t9loNQH90kzJcsFCODdigxfp325aq4z

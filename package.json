@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --progress",
     "build": "NODE_ENV=production webpack -p --progress",
-    "buildwin": "set NODE_ENV=production&webpack -p --progress"
+    "buildwin": "set NODE_ENV=production&webpack -p --progress & copy .surgeignore dist"
   },
   "license": "ISC",
   "dependencies": {
