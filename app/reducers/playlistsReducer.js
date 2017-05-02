@@ -126,7 +126,7 @@ export default function PlaylistReducer(playlists = dummyData, action) {
       }
 
 
-    })
+    });
 
     return copyOfPlaylists
   }
