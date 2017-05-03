@@ -50,7 +50,6 @@ export default function PlaylistReducer(playlists = dummyData, action) {
     copyOfPlaylists.push(newPlaylist);
 
 
-
     return copyOfPlaylists;
   }
 
@@ -115,9 +114,9 @@ export default function PlaylistReducer(playlists = dummyData, action) {
 
         } else {
           //Remove song from playlist
-          const index = playlist.songs.findIndex((element)=> (element.id === action.song.id));
+          const index = playlist.songs.findIndex((element) => (element.id === action.song.id));
 
-          playlist.songs.splice(index,1);
+          playlist.songs.splice(index, 1);
           copyOfPlaylists.push(playlist);
 
         }

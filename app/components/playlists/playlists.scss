@@ -2,7 +2,6 @@
 
 .playlists-container {
   display: flex;
-  flex-direction: row;
   position: absolute;
   top: 0;
   right: 0;
@@ -11,25 +10,30 @@
 }
 
 .playlists-left {
-  width: 200px;
+  width: 220px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #D8D8D8;
   overflow: auto;
+  height: calc(100vw - 65px);
 }
 
 .button-container {
+  width: 100%;
   border-bottom: 1px solid #D8D8D8;
-  width: 180px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
+  height: 10%;
 }
 
 .add-playlist-btn {
+  align-self: center;
   background-color: $blue;
   border-radius: 2px;
-  width: 180px;
+  width: 140px;
   height: 30px;
-  margin: 30px auto;
   font-size: 13px;
   color: #FFFFFF;
   box-shadow: none;
@@ -51,6 +55,8 @@
 }
 
 .no-playlists-saved {
-  display: inline-block;
-  margin: 150px
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
 }
+

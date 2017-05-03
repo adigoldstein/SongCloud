@@ -62,6 +62,7 @@ class Playlists extends React.Component {
     )
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     createNewPlaylist(){

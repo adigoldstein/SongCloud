@@ -39,13 +39,6 @@
   font-size: 18px;
 }
 
-.name-playlist-input:focus {
-  outline: none;
-  border: none;
-  font-size: 18px;
-  margin-left: 15px;
-}
-
 .playlists-bar .delete-btn {
   background-color: #fff;
   border: none;
@@ -54,4 +47,23 @@
   font-weight: bold;
   font-size: 16px;
 }
+
+.playlists-right input[type=text] {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  align-self: center;
+  border: none;
+  font-size: 18px;
+  width: 300px;
+  height: 20px;
+}
+
+.playlists-right input[type=text]:focus {
+  margin: 5px 1px 3px 20px;
+  border-bottom: 5px solid rgba(81, 203, 238, 1);
+}
+
 

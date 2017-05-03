@@ -6,6 +6,7 @@ export default class Topbar extends React.Component {
   constructor() {
     super();
     this.clearPlaceholder = this.clearPlaceholder.bind(this);
+    this.blurPlaceholder = this.blurPlaceholder.bind(this);
   }
 
 
@@ -27,6 +28,12 @@ export default class Topbar extends React.Component {
 
   clearPlaceholder() {
     this.textInput.placeholder = '';
+  }
+
+  blurPlaceholder() {
+    if (this.textInput.value === '') {
+      this.textInput.placeholder = 'SEARCH';
+    }
   }
 
   render() {
@@ -55,6 +62,7 @@ export default class Topbar extends React.Component {
                      this.textInput = input;
                    }}
                    onFocus={ ()=> this.clearPlaceholder()}
+                   onBlur={ ()=> this.blurPlaceholder()}
                    onKeyUp={(e) => {
                      this.inputChangeHandler(e)
                    }}/>
