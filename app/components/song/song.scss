@@ -6,12 +6,43 @@
   border: 1px solid #D8D8D8;
   margin: 15px 25px;
   padding: 10px;
+  position: relative;
 }
 
 .song-img {
   width: 200px;
   height: 85px;
   margin: 0 auto;
+
+}
+
+.fa-play-circle-o {
+  position: absolute;
+  top: 33px;
+  left: 92px;
+  display: none;
+  color: #FFFFFF;
+  font-size:44px;
+}
+
+.fa-pause-circle-o {
+  position: absolute;
+  top: 33px;
+  left: 92px;
+  //display: none;
+  color: #FFFFFF;
+  font-size:44px;
+}
+
+.song-img:hover ~ .fa-play-circle-o {
+  display: inline-block;
+}
+.fa-play-circle-o:hover {
+  display: inline-block;
+}
+
+.song-img:hover {
+  opacity:0.5;
 }
 
 .song-title, .song-duration {

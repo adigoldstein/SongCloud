@@ -101,12 +101,24 @@ class song extends React.Component {
     }
   }
 
+  chooseIconByPlayingTrack() {
+    console.info(this.props.song);
+    console.info(this.props.currentTrack);
+    if (this.props.currentTrack === this.props.song) {
+      return 'fa fa-pause-circle-o';
+    } else {
+      return 'fa fa-play-circle-o';
+    }
+
+  }
+
 
   render() {
+
     const minutes = Math.floor(parseInt(this.props.song.duration) / 60000);
     const seconds = ((parseInt(this.props.song.duration % 60000) / 1000).toFixed(0));
     const songDuration = (seconds === 60 ? (minutes + 1) + ":00" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
-
+    const className = `${ this.chooseIconByPlayingTrack() }`;
     let artWork = this.props.song.artwork_url;
     if (artWork === null) {
       artWork = '';
@@ -117,6 +129,8 @@ class song extends React.Component {
         <div>
           <img onClick={() => this.props.updateCurrentTrack(this.props.song)} src={artWork.replace('large', 't300x300')}
                alt="Song photo" className="song-img"/>
+          <i className={className} aria-hidden="true"> </i>
+          {/*<i className="fa fa-pause-circle-o" aria-hidden="true"> </i>*/}
           <div className="song-title">{this.props.song.title}</div>
           <div className="song-duration">
             <i className="duration-icon fa fa-clock-o" aria-hidden="true"> </i>
@@ -160,7 +174,8 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(stateData) {
   return {
-    playlists: stateData.Playlists
+    playlists: stateData.Playlists,
+    currentTrack: stateData.currentTrack
   }
 }
 
