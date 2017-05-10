@@ -29,9 +29,10 @@ class song extends React.Component {
       if (song.id === this.props.song.id) {
         return true
       }
-    }
 
+    }
     return false
+
   }
 
   isSongInAnyPlaylist() {
