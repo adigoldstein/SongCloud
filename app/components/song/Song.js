@@ -11,7 +11,6 @@ class song extends React.Component {
     this.isSongInPlaylist = this.isSongInPlaylist.bind(this);
     this.createPlaylistAndNavToExplore = this.createPlaylistAndNavToExplore.bind(this);
     this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
-
     this.state = {
       dropdownIsShown: false,
     }
@@ -103,16 +102,20 @@ class song extends React.Component {
   }
 
   chooseIconByPlayingTrack() {
-    console.info(this.props.song);
-    console.info(this.props.currentTrack);
-    if (this.props.currentTrack === this.props.song) {
+    if (this.props.currentTrack === this.props.song && this.props.currentTrack.isPlaying) {
       return 'fa fa-pause-circle-o';
     } else {
       return 'fa fa-play-circle-o';
     }
-
   }
 
+  songImageClickHandler() {
+    if (this.props.currentTrack !== this.props.song) {
+      this.props.updateCurrentTrack(this.props.song)
+    } else  {
+      this.props.changeIsPlaying()
+    }
+  }
 
   render() {
 
@@ -130,8 +133,7 @@ class song extends React.Component {
         <div>
           <img onClick={() => this.props.updateCurrentTrack(this.props.song)} src={artWork.replace('large', 't300x300')}
                alt="Song photo" className="song-img"/>
-          <i className={className} aria-hidden="true"> </i>
-          {/*<i className="fa fa-pause-circle-o" aria-hidden="true"> </i>*/}
+          <i className={className} onClick={() => this.songImageClickHandler()} aria-hidden="true"> </i>
           <div className="song-title">{this.props.song.title}</div>
           <div className="song-duration">
             <i className="duration-icon fa fa-clock-o" aria-hidden="true"> </i>
@@ -152,6 +154,8 @@ class song extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     updateCurrentTrack(song){
+      // Add song with true as default and change to true onclick on img!
+      song.isPlaying = true;
       return dispatch({
         type: 'UPDATE_CURRENT_TRACK',
         song
@@ -170,7 +174,13 @@ function mapDispatchToProps(dispatch) {
         playlist,
         addSong
       })
+    },
+    changeIsPlaying() {
+      return dispatch({
+        type: 'CHANGE_IS_PLAYING'
+      })
     }
+
   }
 }
 function mapStateToProps(stateData) {
@@ -181,3 +191,5 @@ function mapStateToProps(stateData) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(song);
+
+
