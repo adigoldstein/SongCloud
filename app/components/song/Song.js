@@ -131,7 +131,7 @@ class song extends React.Component {
 
       <li className="songs-li" key={this.props.song.id} title={this.props.song.title}>
         <div>
-          <img onClick={() => this.props.updateCurrentTrack(this.props.song)} src={artWork.replace('large', 't300x300')}
+          <img onClick={() => this.songImageClickHandler()} src={artWork.replace('large', 't300x300')}
                alt="Song photo" className="song-img"/>
           <i className={className} onClick={() => this.songImageClickHandler()} aria-hidden="true"> </i>
           <div className="song-title">{this.props.song.title}</div>

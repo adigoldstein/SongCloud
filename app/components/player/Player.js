@@ -9,22 +9,29 @@ class Player extends React.Component {
 
   componentDidUpdate(prevProps) {
 
-    if (prevProps !== this.props) {
+    const currentIsPlaying = this.props.currentTrack && this.props.currentTrack.isPlaying;
+    const prevIsPlaying = prevProps.currentTrack && prevProps.currentTrack.isPlaying;
+
+    if (currentIsPlaying !== prevIsPlaying) {
+      console.log('isplay is different...', currentIsPlaying)
       if (this.props.currentTrack.isPlaying) {
+        console.log('playing...')
         this.audio.play();
       } else {
+        console.log('pausing...')
         this.audio.pause();
       }
-
+    }
+    else {
+      console.log('isplay is same...', currentIsPlaying)
     }
   }
 
 
   render() {
     const props = this.props;
-    const storeData = store.getState();
 
-    if (!storeData.currentTrack) {
+    if (!props.currentTrack) {
 
       return null
     }
