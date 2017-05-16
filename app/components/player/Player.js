@@ -10,11 +10,8 @@ class Player extends React.Component {
   componentDidUpdate() {
 
     if (this.props.currentTrack.isPlaying) {
-      console.log('playing...');
       this.audio.play();
     } else {
-      console.info(this.audio);
-      console.log('pausing...');
       this.audio.pause();
     }
 

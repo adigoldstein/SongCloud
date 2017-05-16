@@ -102,7 +102,10 @@ class song extends React.Component {
   }
 
   chooseIconByPlayingTrack() {
-    if (this.props.currentTrack.song === this.props.song && this.props.currentTrack.isPlaying) {
+    if (this.props.currentTrack.song === null) {
+      return 'fa fa-play-circle-o';
+    }
+    else if (this.props.currentTrack.song.id === this.props.song.id && this.props.currentTrack.isPlaying) {
       return 'fa fa-pause-circle-o';
     } else {
       return 'fa fa-play-circle-o';
