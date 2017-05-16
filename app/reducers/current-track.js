@@ -1,7 +1,7 @@
 export default function currentTrackReducer(currentTrack = {song: null, isPlaying: false}, action) {
 
   if (action.type === 'UPDATE_CURRENT_TRACK') {
-    let copyOfCurrentTrack= {};
+    let copyOfCurrentTrack = {};
     copyOfCurrentTrack.song = Object.assign({}, action.song);
     copyOfCurrentTrack.isPlaying = true;
 
@@ -11,7 +11,7 @@ export default function currentTrackReducer(currentTrack = {song: null, isPlayin
 
   if (action.type === 'CHANGE_IS_PLAYING') {
 
-    let copyOfCurrentTrack = Object.assign({},currentTrack, {isPlaying: !currentTrack.isPlaying});
+    let copyOfCurrentTrack = Object.assign({}, currentTrack, {isPlaying: !currentTrack.isPlaying});
     return copyOfCurrentTrack;
   }
 

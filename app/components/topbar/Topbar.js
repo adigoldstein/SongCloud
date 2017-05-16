@@ -61,8 +61,8 @@ export default class Topbar extends React.Component {
                    ref={(input) => {
                      this.textInput = input;
                    }}
-                   onFocus={ ()=> this.clearPlaceholder()}
-                   onBlur={ ()=> this.blurPlaceholder()}
+                   onFocus={ () => this.clearPlaceholder()}
+                   onBlur={ () => this.blurPlaceholder()}
                    onKeyUp={(e) => {
                      this.inputChangeHandler(e)
                    }}/>

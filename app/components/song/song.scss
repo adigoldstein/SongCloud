@@ -22,7 +22,7 @@
   left: 92px;
   display: none;
   color: #FFFFFF;
-  font-size:44px;
+  font-size: 44px;
 }
 
 .fa-pause-circle-o {
@@ -30,18 +30,19 @@
   top: 33px;
   left: 92px;
   color: #FFFFFF;
-  font-size:44px;
+  font-size: 44px;
 }
 
 .song-img:hover ~ .fa-play-circle-o {
   display: inline-block;
 }
+
 .fa-play-circle-o:hover {
   display: inline-block;
 }
 
 .song-img:hover {
-  opacity:0.5;
+  opacity: 0.5;
 }
 
 .song-title, .song-duration {

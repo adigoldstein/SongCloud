@@ -16,12 +16,11 @@ export default class Root extends React.Component {
   }
 
 
-
   render() {
 
     return (
       <div className="main-root">
-        <Topbar history={this.props.history} />
+        <Topbar history={this.props.history}/>
         <Switch>
           <Route exact path="/" component={() =>
             <Redirect to="/explore"/>
