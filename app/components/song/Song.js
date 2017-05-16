@@ -102,7 +102,7 @@ class song extends React.Component {
   }
 
   chooseIconByPlayingTrack() {
-    if (this.props.currentTrack === this.props.song && this.props.currentTrack.isPlaying) {
+    if (this.props.currentTrack.song === this.props.song && this.props.currentTrack.isPlaying) {
       return 'fa fa-pause-circle-o';
     } else {
       return 'fa fa-play-circle-o';
@@ -110,11 +110,14 @@ class song extends React.Component {
   }
 
   songImageClickHandler() {
-    if (this.props.currentTrack !== this.props.song) {
+
+    if (this.props.currentTrack.song === null || this.props.currentTrack.song.id !== this.props.song.id) {
       this.props.updateCurrentTrack(this.props.song)
-    } else  {
+    } else {
       this.props.changeIsPlaying()
     }
+
+
   }
 
   render() {
@@ -154,8 +157,6 @@ class song extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     updateCurrentTrack(song){
-      // Add song with true as default and change to true onclick on img!
-      song.isPlaying = true;
       return dispatch({
         type: 'UPDATE_CURRENT_TRACK',
         song
